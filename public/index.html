@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#2a1a12" />
+  <title>Cewámica — Where transformation takes form</title>
+  <meta name="description" content="Cewámica — un proyecto enraizado en formas ancestrales de trabajar el barro: barro salvaje, fuego en pozo, piezas únicas. Todos Santos · Baja California Sur." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap" />
+
+  <link rel="preload" as="font" href="/fonts/SFC-Mehico.ttf" type="font/ttf" crossorigin />
+  <link rel="preload" as="font" href="/fonts/Canela-Thin.otf" type="font/otf" crossorigin />
+  <link rel="preload" as="font" href="/fonts/Canela-ThinItalic.otf" type="font/otf" crossorigin />
+
+  <link rel="preload" as="image" href="/images/hero/01-wild-clay.jpg" />
+  <link rel="preload" as="image" href="/images/hero/02-pit-fired.jpg" />
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
+
+  <!-- =============================================================
+       NAV — translucent overlay; wordmark left, links right, mark center
+       ============================================================= -->
+  <nav class="nav" aria-label="Primary" id="nav">
+    <a class="nav__brand" href="#top" aria-label="Cewámica home">
+      <img src="/images/logo/wordmark.svg" alt="Cewámica" />
+    </a>
+
+    <div class="nav__center" aria-hidden="true">
+      <a href="#top" aria-label="Cewámica">
+        <img src="/images/logo/icon.svg" alt="" />
+      </a>
+    </div>
+
+    <div class="nav__links">
+      <a class="nav__link" href="#about" data-section="about">about</a>
+      <a class="nav__link" href="#pieces" data-section="pieces">pieces</a>
+      <a class="nav__link" href="#barro" data-section="barro">barro contigo</a>
+      <a class="nav__link" href="#medium" data-section="medium">the medium</a>
+      <a class="nav__link" href="#contact" data-section="contact">contact</a>
+      <a class="nav__link" href="https://instagram.com/cewamica" target="_blank" rel="noopener">instagram</a>
+    </div>
+
+    <button class="nav__menu-toggle" aria-label="Menu" id="menuToggle"><span></span><span></span></button>
+  </nav>
+
+  <!-- Mobile drawer -->
+  <div class="mobile-drawer" id="mobileDrawer" aria-hidden="true">
+    <div class="mobile-drawer__inner">
+      <a href="#about" data-close>about</a>
+      <a href="#pieces" data-close>pieces</a>
+      <a href="#barro" data-close>barro contigo</a>
+      <a href="#medium" data-close>the medium</a>
+      <a href="#contact" data-close>contact</a>
+      <a href="https://instagram.com/cewamica" target="_blank" rel="noopener" data-close>instagram</a>
+    </div>
+  </div>
+
+  <!-- =============================================================
+       HERO — 4-slide carousel with glass typography
+       ============================================================= -->
+  <header class="hero" id="top" aria-label="Cewámica intro">
+
+    <!-- Slides -->
+    <div class="hero__slides" id="heroSlides">
+
+      <!-- =============================================================
+           Each slide renders the glass title via inline <svg>:
+             • <clipPath> shaped like the text
+             • <image> of the slide bg, blurred + duplicated, clipped to text → frosted fill
+             • <rect> cream tint over the clipped image
+             • <circle class="spotlight"> filled by a radial gradient that follows the cursor
+             • <text> stroke outline on top
+           This composes a real glass-on-photo effect that keeps reading the bg behind
+           the letters AND reveals more luminance where the cursor passes.
+           ============================================================= -->
+
+      <article class="slide is-active" data-slide="0" data-zoom-from="bottom-left">
+        <div class="slide__image" style="background-image:url('/images/hero/01-wild-clay.jpg');"></div>
+        <div class="slide__veil"></div>
+        <div class="slide__title">
+          <svg class="glass-text" viewBox="0 0 1600 720" preserveAspectRatio="xMidYMid meet" aria-label="Wild Clay" data-text="WILD CLAY">
+            <defs>
+              <clipPath id="textShape-0">
+                <text class="glass-text__shape glass-text__shape--two" x="800" y="270" text-anchor="middle">WILD</text>
+                <text class="glass-text__shape glass-text__shape--two" x="800" y="660" text-anchor="middle">CLAY</text>
+                <text class="glass-text__shape glass-text__shape--one" x="800" y="500" text-anchor="middle">WILD CLAY</text>
+              </clipPath>
+              <filter id="glassBlur-0" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+                <feGaussianBlur stdDeviation="9"/>
+              </filter>
+              <radialGradient id="spot-0" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stop-color="rgba(255,248,235,1)"/>
+                <stop offset="35%" stop-color="rgba(255,235,215,0.78)"/>
+                <stop offset="70%" stop-color="rgba(252,223,206,0.28)"/>
+                <stop offset="100%" stop-color="rgba(252,223,206,0)"/>
+              </radialGradient>
+            </defs>
+            <g clip-path="url(#textShape-0)">
+              <image href="/images/hero/01-wild-clay.jpg" x="0" y="0" width="1600" height="720" preserveAspectRatio="xMidYMid slice" filter="url(#glassBlur-0)"/>
+              <rect x="0" y="0" width="1600" height="720" fill="rgba(252,223,206,0.22)"/>
+              <circle class="spotlight" cx="800" cy="360" r="520" fill="url(#spot-0)" data-spot="0"/>
+            </g>
+            <text class="glass-text__outline glass-text__shape--two" x="800" y="270" text-anchor="middle">WILD</text>
+            <text class="glass-text__outline glass-text__shape--two" x="800" y="660" text-anchor="middle">CLAY</text>
+            <text class="glass-text__outline glass-text__shape--one" x="800" y="500" text-anchor="middle">WILD CLAY</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="slide" data-slide="1" data-zoom-from="bottom-right">
+        <div class="slide__image" style="background-image:url('/images/hero/02-pit-fired.jpg');"></div>
+        <div class="slide__veil"></div>
+        <div class="slide__title">
+          <svg class="glass-text" viewBox="0 0 1600 720" preserveAspectRatio="xMidYMid meet" aria-label="Pit Fired" data-text="PIT FIRED">
+            <defs>
+              <clipPath id="textShape-1">
+                <text class="glass-text__shape glass-text__shape--two" x="800" y="270" text-anchor="middle">PIT</text>
+                <text class="glass-text__shape glass-text__shape--two" x="800" y="660" text-anchor="middle">FIRED</text>
+                <text class="glass-text__shape glass-text__shape--one" x="800" y="500" text-anchor="middle">PIT FIRED</text>
+              </clipPath>
+              <filter id="glassBlur-1" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+                <feGaussianBlur stdDeviation="9"/>
+              </filter>
+              <radialGradient id="spot-1" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stop-color="rgba(255,248,235,1)"/>
+                <stop offset="35%" stop-color="rgba(255,235,215,0.78)"/>
+                <stop offset="70%" stop-color="rgba(252,223,206,0.28)"/>
+                <stop offset="100%" stop-color="rgba(252,223,206,0)"/>
+              </radialGradient>
+            </defs>
+            <g clip-path="url(#textShape-1)">
+              <image href="/images/hero/02-pit-fired.jpg" x="0" y="0" width="1600" height="720" preserveAspectRatio="xMidYMid slice" filter="url(#glassBlur-1)"/>
+              <rect x="0" y="0" width="1600" height="720" fill="rgba(252,223,206,0.22)"/>
+              <circle class="spotlight" cx="800" cy="360" r="520" fill="url(#spot-1)" data-spot="1"/>
+            </g>
+            <text class="glass-text__outline glass-text__shape--two" x="800" y="270" text-anchor="middle">PIT</text>
+            <text class="glass-text__outline glass-text__shape--two" x="800" y="660" text-anchor="middle">FIRED</text>
+            <text class="glass-text__outline glass-text__shape--one" x="800" y="500" text-anchor="middle">PIT FIRED</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="slide" data-slide="2" data-zoom-from="top-left">
+        <div class="slide__image" style="background-image:url('/images/hero/03-pieces.jpg');"></div>
+        <div class="slide__veil"></div>
+        <div class="slide__title">
+          <svg class="glass-text" viewBox="0 0 1600 720" preserveAspectRatio="xMidYMid meet" aria-label="Pieces" data-text="PIECES">
+            <defs>
+              <clipPath id="textShape-2">
+                <text class="glass-text__shape glass-text__shape--solo" x="800" y="500" text-anchor="middle">PIECES</text>
+              </clipPath>
+              <filter id="glassBlur-2" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+                <feGaussianBlur stdDeviation="9"/>
+              </filter>
+              <radialGradient id="spot-2" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stop-color="rgba(255,248,235,1)"/>
+                <stop offset="35%" stop-color="rgba(255,235,215,0.78)"/>
+                <stop offset="70%" stop-color="rgba(252,223,206,0.28)"/>
+                <stop offset="100%" stop-color="rgba(252,223,206,0)"/>
+              </radialGradient>
+            </defs>
+            <g clip-path="url(#textShape-2)">
+              <image href="/images/hero/03-pieces.jpg" x="0" y="0" width="1600" height="720" preserveAspectRatio="xMidYMid slice" filter="url(#glassBlur-2)"/>
+              <rect x="0" y="0" width="1600" height="720" fill="rgba(252,223,206,0.22)"/>
+              <circle class="spotlight" cx="800" cy="360" r="520" fill="url(#spot-2)" data-spot="2"/>
+            </g>
+            <text class="glass-text__outline glass-text__shape--solo" x="800" y="500" text-anchor="middle">PIECES</text>
+          </svg>
+        </div>
+      </article>
+
+      <article class="slide" data-slide="3" data-zoom-from="top-right">
+        <div class="slide__image" style="background-image:url('/images/hero/04-intuitive.jpg');"></div>
+        <div class="slide__veil"></div>
+        <div class="slide__title">
+          <svg class="glass-text" viewBox="0 0 1600 720" preserveAspectRatio="xMidYMid meet" aria-label="Intuitive" data-text="INTUITIVE">
+            <defs>
+              <clipPath id="textShape-3">
+                <text class="glass-text__shape glass-text__shape--solo" x="800" y="500" text-anchor="middle">INTUITIVE</text>
+              </clipPath>
+              <filter id="glassBlur-3" x="-10%" y="-10%" width="120%" height="120%" filterUnits="objectBoundingBox">
+                <feGaussianBlur stdDeviation="9"/>
+              </filter>
+              <radialGradient id="spot-3" cx="50%" cy="50%" r="50%" fx="50%" fy="50%">
+                <stop offset="0%" stop-color="rgba(255,248,235,1)"/>
+                <stop offset="35%" stop-color="rgba(255,235,215,0.78)"/>
+                <stop offset="70%" stop-color="rgba(252,223,206,0.28)"/>
+                <stop offset="100%" stop-color="rgba(252,223,206,0)"/>
+              </radialGradient>
+            </defs>
+            <g clip-path="url(#textShape-3)">
+              <image href="/images/hero/04-intuitive.jpg" x="0" y="0" width="1600" height="720" preserveAspectRatio="xMidYMid slice" filter="url(#glassBlur-3)"/>
+              <rect x="0" y="0" width="1600" height="720" fill="rgba(252,223,206,0.22)"/>
+              <circle class="spotlight" cx="800" cy="360" r="520" fill="url(#spot-3)" data-spot="3"/>
+            </g>
+            <text class="glass-text__outline glass-text__shape--solo" x="800" y="500" text-anchor="middle">INTUITIVE</text>
+          </svg>
+        </div>
+      </article>
+
+    </div>
+
+    <!-- Caption strip (top-left and top-right meta lines visible after delay) -->
+    <div class="hero__corners" aria-hidden="true">
+      <span class="corner corner--bl">est. Todos Santos · Baja California Sur</span>
+      <span class="corner corner--br" id="slideMeta">i. wild clay</span>
+    </div>
+
+    <!-- Dots -->
+    <div class="hero__dots" id="heroDots" role="tablist" aria-label="Hero slideshow">
+      <button class="dot is-active" data-go="0" role="tab" aria-label="Wild Clay"></button>
+      <button class="dot" data-go="1" role="tab" aria-label="Pit Fired"></button>
+      <button class="dot" data-go="2" role="tab" aria-label="Pieces"></button>
+      <button class="dot" data-go="3" role="tab" aria-label="Intuitive"></button>
+    </div>
+
+    <!-- Scroll cue -->
+    <a class="scroll-cue" href="#about" aria-label="Scroll">
+      <span>scroll</span>
+      <span class="scroll-cue__line" aria-hidden="true"></span>
+    </a>
+
+  </header>
+
+  <!-- =============================================================
+       ABOUT
+       ============================================================= -->
+  <section class="section section--about" id="about">
+    <div class="section__inner">
+      <header class="section__head">
+        <span class="eyebrow reveal">i. about</span>
+        <h2 class="display reveal reveal--delay-1">
+          A space <em>where</em> internal<br>
+          processes take <em>form</em>.
+        </h2>
+      </header>
+
+      <div class="about__grid">
+        <div class="about__copy">
+          <p class="reveal reveal--delay-1">
+            <strong>Cewámica is not a brand.</strong> It is a project rooted in ancestral ways of working with clay — gathering it, preparing it, transforming it in conversation with the place it comes from.
+          </p>
+          <p class="reveal reveal--delay-2">
+            That foundation meets a contemporary sensibility. Each piece is built from an intuitive process, guided by what emerges, not by predefined forms. We work with wild clay, fire, and presence.
+          </p>
+          <div class="about__pairs">
+            <div class="pair reveal reveal--delay-2">
+              <span class="pair__num">i</span>
+              <span class="pair__items"><em>ancestral</em> · rooted · elemental</span>
+            </div>
+            <div class="pair reveal reveal--delay-3">
+              <span class="pair__num">ii</span>
+              <span class="pair__items"><em>contemporary</em> · intuitive · precise</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="about__media">
+          <figure class="about__photo about__photo--a reveal">
+            <img src="/images/barro/taller-01.jpg" alt="Studio in Todos Santos" loading="lazy" />
+          </figure>
+          <figure class="about__photo about__photo--b reveal reveal--delay-1">
+            <img src="/images/quiet/quiet-02.jpg" alt="A piece in sunlight" loading="lazy" />
+          </figure>
+          <figure class="about__photo about__photo--c reveal reveal--delay-2">
+            <img src="/images/barro/barro-13.jpg" alt="Process detail" loading="lazy" />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       PIECES
+       ============================================================= -->
+  <section class="section section--pieces" id="pieces">
+    <div class="section__inner">
+      <header class="section__head">
+        <span class="eyebrow reveal">ii. pieces</span>
+        <h2 class="display reveal reveal--delay-1">
+          Unique <em>pieces</em>,<br>
+          each with their<br>
+          own <em>origin</em>.
+        </h2>
+        <p class="lede reveal reveal--delay-2">
+          Small families of hand-built pieces from clay gathered across Baja California Sur. Each collection carries the character of its source — mountain, oasis, riverbed, sea.
+        </p>
+      </header>
+
+      <!-- Quiet Companions -->
+      <article class="collection reveal">
+        <div class="collection__head">
+          <span class="collection__num">i.</span>
+          <h3 class="collection__name">Quiet <em>Companions</em></h3>
+          <span class="collection__meta">Baja California Edition · 2026</span>
+        </div>
+        <div class="collection__intro">
+          <p>Small pieces <em>made to be held</em>, to be touched, to live close to the hands — they bring you back to yourself.</p>
+        </div>
+        <div class="pieces-grid">
+          <figure class="piece"><img src="/images/quiet/quiet-01.jpg" alt="Quiet Companion 01" loading="lazy"><figcaption><span>01</span> Oasis · 12 × 13 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-02.jpg" alt="Quiet Companion 02" loading="lazy"><figcaption><span>02</span> Pescadero · 12 × 13 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-03.jpg" alt="Quiet Companion 03" loading="lazy"><figcaption><span>03</span> La Torre · 13 × 14 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-05.jpg" alt="Quiet Companion 04" loading="lazy"><figcaption><span>04</span> Sierra · 11 × 12 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-06.jpg" alt="Quiet Companion 05" loading="lazy"><figcaption><span>05</span> Lecho · 14 × 15 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-07.jpg" alt="Quiet Companion 06" loading="lazy"><figcaption><span>06</span> Pacífico · 10 × 11 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-09.jpg" alt="Quiet Companion 07" loading="lazy"><figcaption><span>07</span> Cardón · 13 × 14 cm</figcaption></figure>
+          <figure class="piece"><img src="/images/quiet/quiet-10.jpg" alt="Quiet Companion 08" loading="lazy"><figcaption><span>08</span> Salobre · 12 × 12 cm</figcaption></figure>
+        </div>
+        <footer class="collection__footer">
+          <span>Hand-built · wild clay · pit-fired · unique</span>
+          <span class="price">from $3,800 MXN</span>
+        </footer>
+      </article>
+
+      <!-- Valle Collection -->
+      <article class="collection reveal">
+        <div class="collection__head">
+          <span class="collection__num">ii.</span>
+          <h3 class="collection__name"><em>Valle</em> Collection</h3>
+          <span class="collection__meta">Sierra de la Laguna · 2025</span>
+        </div>
+        <div class="collection__intro">
+          <p>Pieces with <em>presence</em> — volumes that hold a space and converse with the light around them.</p>
+        </div>
+        <div class="pieces-grid pieces-grid--large">
+          <figure class="piece"><img src="/images/valle/valle-02.jpg" alt="Valle — cardón" loading="lazy"><figcaption><span>i</span> Cardón · large</figcaption></figure>
+          <figure class="piece"><img src="/images/valle/valle-01.jpg" alt="Valle — vertical" loading="lazy"><figcaption><span>ii</span> Vertical · sculpture</figcaption></figure>
+          <figure class="piece"><img src="/images/valle/valle-03.jpg" alt="Valle — vessel" loading="lazy"><figcaption><span>iii</span> Vessel · body</figcaption></figure>
+          <figure class="piece"><img src="/images/valle/valle-04.jpg" alt="Valle — detail" loading="lazy"><figcaption><span>iv</span> Detail · surface</figcaption></figure>
+        </div>
+        <footer class="collection__footer">
+          <span>Commissions available · interiors / hotels / curators</span>
+          <span class="price"><em>upon request</em></span>
+        </footer>
+      </article>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       BARRO CONTIGO
+       ============================================================= -->
+  <section class="section section--barro" id="barro">
+    <div class="section__inner">
+      <header class="section__head">
+        <span class="eyebrow reveal">iii. barro contigo</span>
+        <h2 class="display reveal reveal--delay-1">
+          Where <em>transformation</em><br>
+          takes form.
+        </h2>
+        <p class="lede reveal reveal--delay-2">
+          An incubator — a one-to-one space held through presence, conversation, and working with the earth. A pause from the rhythm of the world, with wild clay as company.
+        </p>
+      </header>
+
+      <div class="formats">
+        <article class="format reveal">
+          <span class="format__num">i.</span>
+          <span class="format__hours">2 hrs · 1:1</span>
+          <p class="format__copy">A contained moment to be received and to leave with perspective. Clay rests on the table as a companion. Each session finds its own depth.</p>
+          <h3 class="format__name">Single <em>session</em></h3>
+          <div class="format__price">$150 USD</div>
+        </article>
+
+        <article class="format reveal reveal--delay-1">
+          <span class="format__num">ii.</span>
+          <span class="format__hours">6 weeks · 18 hrs</span>
+          <p class="format__copy">A deeper process to integrate what is transforming. A cycle that goes from the earth to the fire — a bridge between the inner world and the material.</p>
+          <h3 class="format__name">Six-week <em>cycle</em></h3>
+          <div class="format__price">$900 USD</div>
+        </article>
+      </div>
+
+      <div class="artist">
+        <figure class="artist__media reveal">
+          <img src="/images/about/salome.jpg" alt="Salomé Le Lay — the artist behind Cewámica" loading="lazy" />
+        </figure>
+        <div class="artist__copy">
+          <span class="eyebrow reveal">The artist</span>
+          <h3 class="reveal reveal--delay-1">Salomé <em>Le Lay</em></h3>
+          <p class="signature reveal reveal--delay-1">— present, without performing.</p>
+          <p class="reveal reveal--delay-2">Five years ago, my life turned. I came from design and creative direction, and from a path marked by long periods of gestation and transformation. I entered service work and began holding space for people in transition.</p>
+          <p class="reveal reveal--delay-3">Clay has remained my personal anchor: a way to slow down, integrate, and return to the body. Barro Contigo comes from there.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       THE MEDIUM
+       ============================================================= -->
+  <section class="section section--medium" id="medium">
+    <div class="section__inner">
+      <header class="section__head">
+        <span class="eyebrow reveal">iv. the medium</span>
+        <h2 class="display reveal reveal--delay-1">
+          From the <em>earth</em><br>
+          to the <em>fire</em>.
+        </h2>
+        <p class="lede reveal reveal--delay-2">
+          Six gestures, in order. Each one shapes the next. There is no rushing the medium — only meeting it.
+        </p>
+      </header>
+
+      <ol class="medium__steps">
+        <li class="step reveal">
+          <span class="step__num">01</span>
+          <h4>Gather</h4>
+          <p>Walk to the place. Read the soil. Take only what is asked for.</p>
+        </li>
+        <li class="step reveal reveal--delay-1">
+          <span class="step__num">02</span>
+          <h4>Prepare</h4>
+          <p>Rest the clay with aloe and water. Strain. Let the body settle.</p>
+        </li>
+        <li class="step reveal reveal--delay-2">
+          <span class="step__num">03</span>
+          <h4>Explore</h4>
+          <p>What emerges leads. The hand listens before it decides.</p>
+        </li>
+        <li class="step reveal reveal--delay-3">
+          <span class="step__num">04</span>
+          <h4>Build</h4>
+          <p>Coil and pinch. Walk around the piece. Stay with it as it takes shape.</p>
+        </li>
+        <li class="step reveal">
+          <span class="step__num">05</span>
+          <h4>Burnish</h4>
+          <p>Stone polish over hours. The surface remembers every pass of the hand.</p>
+        </li>
+        <li class="step reveal reveal--delay-1">
+          <span class="step__num">06</span>
+          <h4>Fire</h4>
+          <p>Pit fire — wood, smoke, ash. A final alchemy where the piece is released.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- =============================================================
+       CONTACT / FOOTER
+       ============================================================= -->
+  <footer class="contact" id="contact">
+    <div class="contact__mark" aria-hidden="true">
+      <img src="/images/logo/icon.svg" alt="" />
+    </div>
+
+    <div class="contact__inner">
+      <header class="section__head section__head--center">
+        <span class="eyebrow reveal">v. contact</span>
+        <h2 class="display reveal reveal--delay-1">
+          If something <em>resonates</em>,<br>come closer.
+        </h2>
+      </header>
+
+      <div class="contact__cta-wrap reveal reveal--delay-2">
+        <a class="contact__cta" href="mailto:hola@cewamica.com">
+          <span>Write to Salomé</span>
+          <svg width="18" height="12" viewBox="0 0 18 12" fill="none">
+            <path d="M1 6 H16 M11 1 L16 6 L11 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </a>
+      </div>
+
+      <div class="contact__details">
+        <div class="contact__col reveal">
+          <h4>Studio</h4>
+          <p>Todos Santos<br>Baja California Sur<br>México</p>
+        </div>
+        <div class="contact__col reveal reveal--delay-1">
+          <h4>Write</h4>
+          <a href="mailto:hola@cewamica.com">hola@cewamica.com</a>
+          <a href="tel:+5215578437645">+52 55 7843 7645</a>
+        </div>
+        <div class="contact__col reveal reveal--delay-2">
+          <h4>Follow</h4>
+          <a href="https://instagram.com/cewamica" target="_blank" rel="noopener">@cewamica</a>
+          <a href="https://instagram.com/salome.lelay" target="_blank" rel="noopener">@salome.lelay</a>
+        </div>
+        <div class="contact__col reveal reveal--delay-3">
+          <h4>Languages</h4>
+          <p>Español · English · Français</p>
+        </div>
+      </div>
+
+      <div class="contact__bottom">
+        <img class="contact__wordmark" src="/images/logo/wordmark.svg" alt="Cewámica" />
+        <div class="contact__legal">
+          <span>© 2026 Cewámica</span>
+          <span>Where transformation takes form</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/main.js" defer></script>
+</body>
+</html>

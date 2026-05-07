@@ -1,0 +1,12 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "cewamica-static",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["-y", "serve", "public", "-l", "5174", "--no-clipboard"],
+      "port": 5174,
+      "cwd": "/Users/alanluna/Downloads/cewamica-site"
+    }
+  ]
+}
