@@ -5,49 +5,49 @@
 /* ---------- FONT FACES ---------- */
 @font-face {
   font-family: 'SFC Mehico';
-  src: url('/fonts/SFC-Mehico.ttf') format('truetype');
+  src: url('fonts/SFC-Mehico.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Canela Text';
-  src: url('/fonts/CanelaText-Thin.otf') format('opentype');
+  src: url('fonts/CanelaText-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Canela Text';
-  src: url('/fonts/CanelaText-Light.otf') format('opentype');
+  src: url('fonts/CanelaText-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Canela';
-  src: url('/fonts/Canela-Thin.otf') format('opentype');
+  src: url('fonts/Canela-Thin.otf') format('opentype');
   font-weight: 100;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Canela';
-  src: url('/fonts/Canela-ThinItalic.otf') format('opentype');
+  src: url('fonts/Canela-ThinItalic.otf') format('opentype');
   font-weight: 100;
   font-style: italic;
   font-display: swap;
 }
 @font-face {
   font-family: 'Canela';
-  src: url('/fonts/Canela-Light.otf') format('opentype');
+  src: url('fonts/Canela-Light.otf') format('opentype');
   font-weight: 300;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Canela';
-  src: url('/fonts/Canela-LightItalic.otf') format('opentype');
+  src: url('fonts/Canela-LightItalic.otf') format('opentype');
   font-weight: 300;
   font-style: italic;
   font-display: swap;
