@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#F4E6D7" />
-  <title>cewámica — wild clay, pit-fired, guided sessions in Todos Santos</title>
+  <title>cewámica — atmospheric · wild clay, Baja California Sur</title>
   <meta name="description" content="Cewámica — wild clay gathered in Baja California Sur, shaped by hand, pit-fired. Guided one-on-one sessions with Salomé Le Lay in Todos Santos." />
 
   <link rel="preload" as="font" href="fonts/Typewriter-Regular.otf" type="font/otf" crossorigin />
   <link rel="preload" as="font" href="fonts/Typewriter-Medium.otf" type="font/otf" crossorigin />
 
-  <link rel="preload" as="image" href="images/hero/01-wild-clay.jpg" />
-  <link rel="preload" as="image" href="images/hero/02-pit-fired.jpg" />
+  <link rel="preload" as="video" href="atmospheric/videos/01.mp4" type="video/mp4" />
+  <link rel="preload" as="video" href="atmospheric/videos/02.mp4" type="video/mp4" />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -55,79 +55,82 @@
   </div>
 
   <!-- =============================================================
-       HERO — immersive, atmospheric fragments rotating with images
+       HERO — atmospheric video version (option 2)
        ============================================================= -->
-  <header class="hero" id="top" aria-label="Cewámica">
+  <header class="hero" id="top" aria-label="Cewámica" data-mode="video">
 
     <div class="hero__slides" id="heroSlides">
 
       <article class="slide is-active" data-slide="0">
-        <div class="slide__image" style="background-image:url('images/hero/01-wild-clay.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline autoplay loop>
+          <source src="atmospheric/videos/01.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="1">
-        <div class="slide__image" style="background-image:url('images/hero/04-intuitive.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline loop>
+          <source src="atmospheric/videos/02.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="2">
-        <div class="slide__image" style="background-image:url('images/hero/03-pieces.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline loop>
+          <source src="atmospheric/videos/03.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="3">
-        <div class="slide__image" style="background-image:url('images/hero/02-pit-fired.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline loop>
+          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="4">
-        <div class="slide__image" style="background-image:url('images/barro/barro-12.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline loop>
+          <source src="atmospheric/videos/05.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="5">
-        <div class="slide__image" style="background-image:url('images/about/salome.jpg');"></div>
-        <div class="slide__veil"></div>
-      </article>
-
-      <article class="slide" data-slide="6">
-        <div class="slide__image" style="background-image:url('images/quiet/quiet-13.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline loop>
+          <source src="atmospheric/videos/06.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
     </div>
 
-    <!-- Centered typewriter fragment, swaps with each slide -->
+    <!-- Centered typewriter fragment, bridges Baja landscape ↔ clay ↔ practice -->
     <div class="hero__fragment" aria-live="polite">
       <div class="frag-stack" id="fragStack">
         <p class="frag is-active" data-frag="0">
           <span class="frag__line frag__line--lead">wild earth</span>
-          <span class="frag__line frag__line--sub">from Baja Sur</span>
+          <span class="frag__line frag__line--sub">the colour our pieces hold</span>
         </p>
         <p class="frag" data-frag="1">
-          <span class="frag__line frag__line--lead">returning</span>
-          <span class="frag__line frag__line--sub">to the hands</span>
+          <span class="frag__line frag__line--lead">open sky</span>
+          <span class="frag__line frag__line--sub">before the firing</span>
         </p>
         <p class="frag" data-frag="2">
-          <span class="frag__line frag__line--lead">what takes shape</span>
-          <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__line frag__line--lead">the sierra</span>
+          <span class="frag__line frag__line--sub">minerals into the hands</span>
         </p>
         <p class="frag" data-frag="3">
-          <span class="frag__line frag__line--lead">matter</span>
-          <span class="frag__line frag__line--sub">in movement</span>
+          <span class="frag__line frag__line--lead">salt wind</span>
+          <span class="frag__line frag__line--sub">settles on the studio</span>
         </p>
         <p class="frag" data-frag="4">
-          <span class="frag__line frag__line--lead">clay as matter</span>
-          <span class="frag__line frag__line--sub">and mirror</span>
+          <span class="frag__line frag__line--lead">midday light</span>
+          <span class="frag__line frag__line--sub">and the slow hands</span>
         </p>
         <p class="frag" data-frag="5">
-          <span class="frag__line frag__line--lead">guided,</span>
-          <span class="frag__line frag__line--sub">one at a time</span>
-        </p>
-        <p class="frag" data-frag="6">
-          <span class="frag__line frag__line--lead">each one holds</span>
-          <span class="frag__line frag__line--sub">a different ground</span>
+          <span class="frag__line frag__line--lead">Todos Santos</span>
+          <span class="frag__line frag__line--sub">between sea and earth</span>
         </p>
       </div>
     </div>
@@ -140,7 +143,7 @@
 
     <!-- Bottom-right meta — index -->
     <div class="hero__meta hero__meta--br" aria-hidden="true">
-      <span class="dim">01 — 07</span>
+      <span class="dim">01 — 06</span>
       <span id="slideIndex">01</span>
     </div>
 
@@ -152,7 +155,6 @@
       <button class="dot" data-go="3" role="tab" aria-label="4"></button>
       <button class="dot" data-go="4" role="tab" aria-label="5"></button>
       <button class="dot" data-go="5" role="tab" aria-label="6"></button>
-      <button class="dot" data-go="6" role="tab" aria-label="7"></button>
     </div>
 
     <a class="scroll-cue" href="#experiences" aria-label="Scroll">
@@ -480,8 +482,8 @@
         <span class="dim">Todos Santos · Baja California Sur</span>
       </div>
       <div class="foot__row foot__row--switch">
-        <span class="dim">currently viewing — option 1 · photographs</span>
-        <a class="dim" href="atmospheric.html">see option 2 · video atmosphere ↗</a>
+        <span class="dim">currently viewing — option 2 · video atmosphere</span>
+        <a class="dim" href="index.html">see option 1 · photographs ↗</a>
       </div>
     </div>
   </footer>

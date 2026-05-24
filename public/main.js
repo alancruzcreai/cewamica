@@ -15,18 +15,39 @@
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   /* --------------------------------------------------------------
-     1. HERO — slide + fragment sync
+     1. HERO — slide + fragment sync (photo mode OR video mode)
      -------------------------------------------------------------- */
   const slides = $$('#heroSlides .slide');
   const frags  = $$('#fragStack .frag');
   const dots   = $$('#heroDots .dot');
   const slideIndex = $('#slideIndex');
+  const hero = $('.hero');
+  const isVideoMode = hero && hero.getAttribute('data-mode') === 'video';
 
   let active = 0;
   let timer = null;
-  // Long enough to read each fragment without rush, short enough to keep moving
-  const INTERVAL = 6200;
+  // Video mode: 3.5s — matches placeholder clip length, feels breathy
+  // Photo mode: 6.2s — readable + Ken Burns has time to breathe
+  const INTERVAL = isVideoMode ? 3500 : 6200;
   const pad = (n) => String(n + 1).padStart(2, '0');
+
+  // Helper: kick the active video into playback from the start
+  const playActiveVideo = () => {
+    if (!isVideoMode) return;
+    slides.forEach((s, i) => {
+      const v = s.querySelector('video.slide__video');
+      if (!v) return;
+      if (i === active) {
+        try {
+          v.currentTime = 0;
+          const p = v.play();
+          if (p && typeof p.catch === 'function') p.catch(() => {/* ignore autoplay rejections */});
+        } catch (_) { /* noop */ }
+      } else {
+        try { v.pause(); } catch (_) { /* noop */ }
+      }
+    });
+  };
 
   const goTo = (next) => {
     if (next === active || !slides.length) return;
@@ -36,20 +57,27 @@
 
     active = ((next % slides.length) + slides.length) % slides.length;
 
-    // Re-trigger ken burns on the new active slide
-    const img = slides[active].querySelector('.slide__image');
-    if (img) {
-      img.style.animation = 'none';
-      // eslint-disable-next-line no-unused-expressions
-      img.offsetHeight;
-      img.style.animation = '';
+    // Re-trigger ken burns on the new active slide (photo mode only)
+    if (!isVideoMode) {
+      const img = slides[active].querySelector('.slide__image');
+      if (img) {
+        img.style.animation = 'none';
+        // eslint-disable-next-line no-unused-expressions
+        img.offsetHeight;
+        img.style.animation = '';
+      }
     }
 
     slides[active].classList.add('is-active');
     frags[active]?.classList.add('is-active');
     dots[active]?.classList.add('is-active');
     if (slideIndex) slideIndex.textContent = pad(active);
+
+    playActiveVideo();
   };
+
+  // Initial: make sure the first video plays
+  playActiveVideo();
 
   const next = () => goTo(active + 1);
   const start = () => {
@@ -66,7 +94,6 @@
     });
   });
 
-  const hero = $('.hero');
   if (hero) {
     hero.addEventListener('mouseenter', stop);
     hero.addEventListener('mouseleave', start);

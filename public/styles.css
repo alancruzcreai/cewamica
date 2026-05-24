@@ -249,6 +249,23 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   100% { transform: scale(1.14) translate(-1.5%, -1%); }
 }
 
+/* Video variant — atmospheric option */
+.slide__video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: center;
+  will-change: transform, opacity;
+  /* No double ken-burns — the videos already carry motion */
+}
+/* Slightly faster cross-fade in video mode so transitions feel breath-like */
+.hero[data-mode="video"] .slide {
+  transition: opacity 1.2s var(--ease-soft), visibility 0s linear 1.2s;
+}
+.hero[data-mode="video"] .slide.is-active {
+  transition: opacity 1.2s var(--ease-soft), visibility 0s linear 0s;
+}
+
 .slide__veil {
   position: absolute; inset: 0;
   background:
