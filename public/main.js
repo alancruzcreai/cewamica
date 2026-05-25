@@ -179,6 +179,26 @@
   }
 
   /* --------------------------------------------------------------
+     4b. GIANT FOOTER WORDMARK — letters stagger up when in view
+     -------------------------------------------------------------- */
+  const giant = $('.foot__giant');
+  if (giant) {
+    if ('IntersectionObserver' in window && !reduceMotion) {
+      const gio = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) {
+            giant.classList.add('is-in');
+            gio.unobserve(e.target);
+          }
+        }
+      }, { rootMargin: '0px 0px -10% 0px', threshold: 0.15 });
+      gio.observe(giant);
+    } else {
+      giant.classList.add('is-in');
+    }
+  }
+
+  /* --------------------------------------------------------------
      5. SMOOTH ANCHOR SCROLL
      -------------------------------------------------------------- */
   document.addEventListener('click', (e) => {
