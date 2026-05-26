@@ -31,7 +31,9 @@
   const INTERVAL = isVideoMode ? 3500 : 6200;
   const pad = (n) => String(n + 1).padStart(2, '0');
 
-  // Helper: kick the active video into playback from the start
+  // Helper: kick the active video into playback from the start.
+  // Also pre-warm the NEXT slide's video so when its turn arrives it's already
+  // buffered — that's the trick to a pixel-clean cross-fade.
   const playActiveVideo = () => {
     if (!isVideoMode) return;
     slides.forEach((s, i) => {
@@ -47,7 +49,23 @@
         try { v.pause(); } catch (_) { /* noop */ }
       }
     });
+    // Pre-warm next + next+1 so the upcoming cross-fades have fully-buffered video.
+    const ahead = [(active + 1) % slides.length, (active + 2) % slides.length];
+    ahead.forEach((idx) => {
+      const v = slides[idx]?.querySelector('video.slide__video');
+      if (v && v.readyState < 3) { try { v.load(); } catch (_) { /* noop */ } }
+    });
   };
+
+  // On first paint, force every video to start buffering. Modern browsers usually
+  // honour preload="auto" but kick them explicitly to be safe.
+  if (isVideoMode) {
+    slides.forEach((s) => {
+      const v = s.querySelector('video.slide__video');
+      if (!v) return;
+      try { v.load(); } catch (_) { /* noop */ }
+    });
+  }
 
   const goTo = (next) => {
     if (next === active || !slides.length) return;

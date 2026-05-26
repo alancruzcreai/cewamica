@@ -10,6 +10,14 @@
   <link rel="preload" as="font" href="fonts/Typewriter-Regular.otf" type="font/otf" crossorigin />
   <link rel="preload" as="font" href="fonts/Typewriter-Medium.otf" type="font/otf" crossorigin />
 
+  <!-- Hero posters preload first so the cross-fade never lands on a blurry frame.
+       Videos themselves are preload="auto" (full buffer) and gated on canplay. -->
+  <link rel="preload" as="image" href="atmospheric/videos/01.jpg" />
+  <link rel="preload" as="image" href="atmospheric/videos/02.jpg" />
+  <link rel="preload" as="image" href="atmospheric/videos/03.jpg" />
+  <link rel="preload" as="image" href="atmospheric/videos/04.jpg" />
+  <link rel="preload" as="image" href="atmospheric/videos/05.jpg" />
+  <link rel="preload" as="image" href="atmospheric/videos/06.jpg" />
   <link rel="preload" as="video" href="atmospheric/videos/01.mp4" type="video/mp4" />
   <link rel="preload" as="video" href="atmospheric/videos/02.mp4" type="video/mp4" />
 
@@ -62,42 +70,48 @@
     <div class="hero__slides" id="heroSlides">
 
       <article class="slide is-active" data-slide="0">
-        <video class="slide__video" preload="auto" muted playsinline autoplay loop>
+        <video class="slide__video" preload="auto" muted playsinline autoplay loop
+               poster="atmospheric/videos/01.jpg">
           <source src="atmospheric/videos/01.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="1">
-        <video class="slide__video" preload="auto" muted playsinline loop>
+        <video class="slide__video" preload="auto" muted playsinline loop
+               poster="atmospheric/videos/02.jpg">
           <source src="atmospheric/videos/02.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="2">
-        <video class="slide__video" preload="auto" muted playsinline loop>
+        <video class="slide__video" preload="auto" muted playsinline loop
+               poster="atmospheric/videos/03.jpg">
           <source src="atmospheric/videos/03.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="3">
-        <video class="slide__video" preload="auto" muted playsinline loop>
+        <video class="slide__video" preload="auto" muted playsinline loop
+               poster="atmospheric/videos/04.jpg">
           <source src="atmospheric/videos/04.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="4">
-        <video class="slide__video" preload="auto" muted playsinline loop>
+        <video class="slide__video" preload="auto" muted playsinline loop
+               poster="atmospheric/videos/05.jpg">
           <source src="atmospheric/videos/05.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="5">
-        <video class="slide__video" preload="auto" muted playsinline loop>
+        <video class="slide__video" preload="auto" muted playsinline loop
+               poster="atmospheric/videos/06.jpg">
           <source src="atmospheric/videos/06.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
