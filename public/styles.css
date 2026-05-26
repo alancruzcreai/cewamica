@@ -888,3 +888,35 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   .slide.is-active .slide__image { animation: none; transform: scale(1.04); }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* ==========================================================================
+   OPTION 1 ONLY — softer, rounded image corners (data-option="1" on body)
+   Hero stays full-bleed; gallery + portraits get a gentle 14px radius.
+   ========================================================================== */
+[data-option="1"] .piece,
+[data-option="1"] .about__media,
+[data-option="1"] .about__media img {
+  border-radius: 14px;
+  overflow: hidden;
+}
+[data-option="1"] .piece img {
+  border-radius: inherit;
+}
+/* Figcaption sits on top of the image with its own gradient; round its
+   bottom edges so it doesn't poke beyond the rounded image. */
+[data-option="1"] .piece figcaption {
+  border-bottom-left-radius: 14px;
+  border-bottom-right-radius: 14px;
+}
+@media (max-width: 640px) {
+  [data-option="1"] .piece,
+  [data-option="1"] .about__media,
+  [data-option="1"] .about__media img,
+  [data-option="1"] .piece figcaption {
+    border-radius: 10px;
+  }
+  [data-option="1"] .piece figcaption {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+}
