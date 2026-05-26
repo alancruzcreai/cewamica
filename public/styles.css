@@ -763,7 +763,8 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   background: var(--bg-deep);
   padding: 28px 0 0;
   border-top: var(--line);
-  overflow: hidden;          /* clips letters that sit below baseline */
+  /* No overflow:hidden here — letter clipping for the slide-up animation
+     lives on .gw__letter instead, so side bearings never get truncated. */
 }
 .foot__inner {
   max-width: var(--max);
@@ -772,31 +773,33 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   display: flex; flex-direction: column; gap: 8px;
 }
 
-/* Giant wordmark — fills the bottom width-to-width */
+/* Giant wordmark — centered, generous side padding so glyph side bearings
+   never touch the viewport edge. Sized so 8 letters always fit on one line. */
 .foot__giant {
   position: relative;
-  padding: clamp(24px, 4vw, 56px) clamp(20px, 3vw, 56px) clamp(8px, 1.4vw, 24px);
+  padding: clamp(40px, 6vw, 88px) clamp(28px, 5vw, 80px) clamp(20px, 3vw, 40px);
   text-align: center;
   line-height: 0.92;
-  /* Letterspacing slightly tight so 8 letters fill the line edge to edge on desktop */
 }
 .giant-wordmark {
-  display: flex;
-  justify-content: space-between;  /* spread letters edge-to-edge */
+  display: inline-flex;
+  justify-content: center;
   align-items: flex-end;
-  width: 100%;
+  max-width: 100%;
   font-family: var(--font);
   font-weight: 600;
-  font-size: clamp(96px, 22.5vw, 360px);
+  /* Sized so even on the widest desktop the 8 monospaced letters fit
+     comfortably between the side paddings (about 16vw on a 1440 viewport). */
+  font-size: clamp(56px, 16vw, 210px);
   line-height: 0.9;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
   color: var(--clay);
   user-select: none;
 }
 .gw__letter {
   display: inline-block;
   overflow: hidden;               /* clip the inner letter while it slides */
-  padding: 0 0 0.04em 0;          /* room for descenders */
+  padding: 0 0 0.06em 0;          /* room for descenders + slide travel */
   vertical-align: bottom;
 }
 .gw__letter > span {
@@ -826,9 +829,10 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 }
 
 @media (max-width: 640px) {
+  .foot__giant { padding-left: clamp(20px, 4vw, 32px); padding-right: clamp(20px, 4vw, 32px); }
   .giant-wordmark {
-    font-size: clamp(72px, 26vw, 200px);
-    letter-spacing: -0.03em;
+    font-size: clamp(44px, 17vw, 110px);
+    letter-spacing: -0.025em;
   }
 }
 
