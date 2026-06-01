@@ -890,6 +890,46 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 }
 
 /* ==========================================================================
+   OPTION 2 ONLY — Courier Prime typography (data-option="2" on body)
+   Courier Prime has weights 400 + 700 (no 600 like Typewriter), and real
+   italic. Map emphasis classes to 700, give italics breathing room, and
+   open letter-spacing slightly since Courier Prime reads denser.
+   ========================================================================== */
+[data-option="2"] {
+  --font: 'Courier Prime', 'Courier New', ui-monospace, monospace;
+}
+[data-option="2"] body { letter-spacing: 0.012em; }
+
+/* All emphasis classes — Typewriter used 600, Courier Prime needs 700 */
+[data-option="2"] .medium,
+[data-option="2"] .nav__brand-text,
+[data-option="2"] .mobile-drawer a,
+[data-option="2"] .display,
+[data-option="2"] .frag__line--lead,
+[data-option="2"] .offer__title .medium,
+[data-option="2"] .offer__price,
+[data-option="2"] .collection__title .medium,
+[data-option="2"] .about__title,
+[data-option="2"] .foot__wordmark,
+[data-option="2"] .giant-wordmark,
+[data-option="2"] .about__body .signature,
+[data-option="2"] .contact__cta { font-weight: 700; }
+
+/* Display lines that were dimmed (regular) stay 400 — preserves the
+   typewriter "afterthought" pacing. */
+[data-option="2"] .display .line.dim,
+[data-option="2"] .frag__line--sub { font-weight: 400; }
+
+/* Courier Prime has true italic — use it for the running em that I had
+   to leave alone with the Typewriter set. */
+[data-option="2"] em { font-style: italic; font-weight: inherit; }
+
+/* Slightly tighten the giant footer wordmark — Courier Prime's bold is
+   chunkier than Typewriter's medium, so a touch less letter-spacing
+   keeps it from feeling heavy. */
+[data-option="2"] .giant-wordmark { letter-spacing: -0.045em; }
+
+/* ==========================================================================
    OPTION 1 ONLY — softer, rounded image corners (data-option="1" on body)
    Hero stays full-bleed; gallery + portraits get a gentle 14px radius.
    ========================================================================== */

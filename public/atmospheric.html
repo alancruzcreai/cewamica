@@ -7,8 +7,10 @@
   <title>cewamica — atmospheric · wild clay, Baja California Sur</title>
   <meta name="description" content="Cewamica — wild clay gathered in Baja California Sur, shaped by hand, pit-fired. Guided one-on-one sessions with Salome Le Lay in Todos Santos." />
 
-  <link rel="preload" as="font" href="fonts/Typewriter-Regular.otf" type="font/otf" crossorigin />
-  <link rel="preload" as="font" href="fonts/Typewriter-Medium.otf" type="font/otf" crossorigin />
+  <!-- Option 2 typography: Courier Prime (Google Fonts) — 400 + 700 + italics. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" />
 
   <!-- Hero posters preload first so the cross-fade never lands on a blurry frame.
        Videos themselves are preload="auto" (full buffer) and gated on canplay. -->
@@ -23,7 +25,7 @@
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body>
+<body data-option="2">
 
   <!-- Scroll progress -->
   <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
