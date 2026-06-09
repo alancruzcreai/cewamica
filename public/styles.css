@@ -975,33 +975,251 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 [data-option="2"] .giant-wordmark { letter-spacing: -0.045em; }
 
 /* ==========================================================================
-   OPTION 1 ONLY — softer, rounded image corners (data-option="1" on body)
-   Hero stays full-bleed; gallery + portraits get a gentle 14px radius.
+   GLOBAL — 4 px soft corners on EVERY photo across the site.
+   Hero video/photo backgrounds stay full-bleed; everything that reads as a
+   discrete "image" gets the soft rounding.
    ========================================================================== */
-[data-option="1"] .piece,
-[data-option="1"] .about__media,
-[data-option="1"] .about__media img {
-  border-radius: 14px;
+.piece,
+.piece img,
+.about__media,
+.about__media img,
+.experiences__atmosphere,
+.experiences__atmosphere img,
+.offer__media,
+.offer__media-video {
+  border-radius: 4px;
   overflow: hidden;
 }
-[data-option="1"] .piece img {
-  border-radius: inherit;
+.piece figcaption {
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
 }
-/* Figcaption sits on top of the image with its own gradient; round its
-   bottom edges so it doesn't poke beyond the rounded image. */
-[data-option="1"] .piece figcaption {
-  border-bottom-left-radius: 14px;
-  border-bottom-right-radius: 14px;
+
+/* ==========================================================================
+   ATMOSPHERIC STRIP between intro + offers
+   ========================================================================== */
+.experiences__atmosphere {
+  margin: clamp(40px, 8vh, 90px) auto clamp(40px, 6vh, 70px);
+  max-width: 720px;
+  aspect-ratio: 16 / 11;
+  overflow: hidden;
+  border-radius: 4px;
 }
+.experiences__atmosphere img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 9s var(--ease-soft);
+}
+.experiences__atmosphere:hover img { transform: scale(1.04); }
+
+/* ==========================================================================
+   OFFER — clickable title + in-place disclosure
+   ========================================================================== */
+.offer { position: relative; }
+
+/* Button-wrapped title (entire title row is the affordance) */
+.offer__title-btn {
+  display: flex;
+  width: 100%;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  transition: opacity 0.4s var(--ease-soft);
+}
+.offer__title-btn:hover { opacity: 0.85; }
+.offer__title-btn .offer__title { margin: 0; }
+
+/* "Explore →" affordance — quiet until hover */
+.offer__explore {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  opacity: 0.55;
+  white-space: nowrap;
+  transition: opacity 0.4s var(--ease-soft), transform 0.5s var(--ease-soft);
+  flex-shrink: 0;
+}
+.offer__title-btn:hover .offer__explore { opacity: 1; }
+.offer__explore-arrow {
+  display: inline-block;
+  transition: transform 0.5s var(--ease-soft);
+}
+.offer.is-open .offer__explore-arrow { transform: rotate(90deg); }
+.offer.is-open .offer__explore-label { opacity: 0; transform: translateX(8px); }
+.offer__explore-label {
+  transition: opacity 0.3s ease, transform 0.4s var(--ease-soft);
+}
+
+/* Hide the bottom WhatsApp link when expanded — the same CTA repeats inside */
+.offer.is-open > .offer__whatsapp { opacity: 0.35; }
+
+/* The disclosure panel — always in DOM, grid-row 0→1 animates height */
+.offer__expand {
+  display: grid;
+  grid-template-rows: 0fr;
+  opacity: 0;
+  transition: grid-template-rows 0.85s var(--ease-soft),
+              opacity 0.55s ease,
+              margin 0.4s var(--ease-soft);
+  pointer-events: none;
+  margin-top: 0;
+}
+.offer.is-open .offer__expand {
+  grid-template-rows: 1fr;
+  opacity: 1;
+  pointer-events: auto;
+  margin-top: 32px;
+}
+.offer__expand-inner {
+  min-height: 0;       /* required so grid-row 0fr collapses correctly */
+  overflow: hidden;    /* clip child content during collapse */
+  position: relative;
+  padding-top: 28px;
+  border-top: var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 4vh, 40px);
+}
+
+/* Big italic re-statement of the tagline at the top of the expand */
+.offer__expand-headline {
+  margin: 0;
+  font-size: clamp(20px, 2.4vw, 30px);
+  line-height: 1.35;
+  color: var(--clay);
+  opacity: 0.92;
+  letter-spacing: 0.005em;
+}
+.offer__expand-headline em { font-style: italic; font-weight: 400; }
+
+/* Horizontal gallery — swipe to browse, snap to align.
+   Items sized so 1.5–2 are visible at once: the trailing edge of the next
+   video peeks in, signalling "there's more to see". */
+.offer__gallery {
+  display: flex;
+  gap: clamp(12px, 1.6vw, 20px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: 0;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(31, 22, 17, 0.2) transparent;
+  padding: 4px 0 14px;
+  /* Tip the right edge so users see there's more to the right */
+  scroll-snap-stop: always;
+}
+.offer__gallery > .offer__media {
+  flex: 0 0 clamp(260px, 38vw, 380px);
+}
+.offer__gallery::-webkit-scrollbar { height: 4px; }
+.offer__gallery::-webkit-scrollbar-thumb {
+  background: rgba(31, 22, 17, 0.2);
+  border-radius: 2px;
+}
+.offer__media {
+  margin: 0;
+  aspect-ratio: 2 / 3;
+  scroll-snap-align: start;
+  background: var(--bg-deep);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.offer__media-video {
+  width: 100%; height: 100%; object-fit: cover;
+  display: block;
+}
+
+/* For single-video gallery (1:1), centre the media at a comfortable size */
+.offer__gallery[data-gallery-size="1"] {
+  grid-auto-columns: minmax(280px, 480px);
+  justify-content: center;
+}
+
+/* Quotes — two side by side on desktop, stacked on mobile */
+.offer__quotes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(20px, 3vw, 40px);
+}
+.offer__quote {
+  margin: 0;
+  font-size: clamp(14px, 1.05vw, 16px);
+  line-height: 1.75;
+  font-style: italic;
+  color: var(--ink-soft);
+  opacity: 0.85;
+  border-left: 1px solid rgba(110, 58, 34, 0.25);
+  padding-left: 16px;
+}
+.offer__quote p { margin: 0; }
+
+/* Big italic CTA at the bottom — restates the WhatsApp invitation */
+.offer__expand-cta {
+  display: inline-flex;
+  align-self: center;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 4px;
+  padding: 14px 28px;
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--clay);
+  transition: background 0.4s var(--ease-soft), color 0.4s var(--ease-soft), transform 0.4s var(--ease-soft);
+}
+.offer__expand-cta:hover {
+  background: var(--clay);
+  color: var(--cream);
+  transform: translateY(-1px);
+}
+.offer__expand-cta .offer__whatsapp-arrow {
+  font-weight: 400;
+  font-size: 12px;
+  transition: transform 0.4s var(--ease-soft);
+}
+.offer__expand-cta:hover .offer__whatsapp-arrow {
+  transform: translate(3px, -2px);
+}
+
+/* Subtle close button — top right of the expand */
+.offer__expand-close {
+  position: absolute;
+  top: 16px;
+  right: 0;
+  background: transparent;
+  border: 0;
+  font-family: var(--font);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--clay);
+  opacity: 0.5;
+  cursor: pointer;
+  padding: 6px 10px;
+  transition: opacity 0.3s ease;
+}
+.offer__expand-close:hover { opacity: 1; }
+
 @media (max-width: 640px) {
-  [data-option="1"] .piece,
-  [data-option="1"] .about__media,
-  [data-option="1"] .about__media img,
-  [data-option="1"] .piece figcaption {
-    border-radius: 10px;
-  }
-  [data-option="1"] .piece figcaption {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+  .offer__quotes { grid-template-columns: 1fr; }
+  .offer__title-btn .offer__explore-label { display: none; }
+  .offer__media { aspect-ratio: 9 / 13; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .offer__expand, .experiences__atmosphere img,
+  .offer__expand-cta, .offer__expand-close {
+    transition: none;
   }
 }

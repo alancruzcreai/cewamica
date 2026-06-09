@@ -217,6 +217,72 @@
   }
 
   /* --------------------------------------------------------------
+     4c. OFFER DISCLOSURE — click title to reveal media + quotes
+         Hooked-UX loop: trigger (visible explore →) · action (click) ·
+         variable reward (gallery + testimonials) · investment (WhatsApp CTA).
+         Heuristics: aria-expanded reflects state, Esc closes any open,
+         videos lazy-load only when opened (preload="none" until then),
+         videos pause when closed to save bandwidth.
+     -------------------------------------------------------------- */
+  const offers = $$('.offer[data-offer]');
+  offers.forEach((article) => {
+    const btn = article.querySelector('.offer__title-btn');
+    const panel = article.querySelector('.offer__expand');
+    const closeBtn = article.querySelector('.offer__expand-close');
+    if (!btn || !panel) return;
+
+    const openOffer = () => {
+      // Close any other open offer first (one at a time keeps focus calm)
+      offers.forEach((o) => {
+        if (o !== article && o.classList.contains('is-open')) {
+          o.classList.remove('is-open');
+          const ob = o.querySelector('.offer__title-btn');
+          const op = o.querySelector('.offer__expand');
+          if (ob) ob.setAttribute('aria-expanded', 'false');
+          if (op) op.setAttribute('aria-hidden', 'true');
+          if (op) op.querySelectorAll('video').forEach((v) => { try { v.pause(); } catch (_) {} });
+        }
+      });
+
+      article.classList.add('is-open');
+      btn.setAttribute('aria-expanded', 'true');
+      panel.setAttribute('aria-hidden', 'false');
+
+      // Lazy-load + autoplay every video inside this panel
+      panel.querySelectorAll('video.offer__media-video').forEach((v) => {
+        if (!v.src && v.dataset.src) {
+          v.src = v.dataset.src;
+          v.load();
+        }
+        const p = v.play();
+        if (p && typeof p.catch === 'function') p.catch(() => {/* ignore autoplay rejection */});
+      });
+    };
+
+    const closeOffer = () => {
+      article.classList.remove('is-open');
+      btn.setAttribute('aria-expanded', 'false');
+      panel.setAttribute('aria-hidden', 'true');
+      panel.querySelectorAll('video').forEach((v) => { try { v.pause(); } catch (_) {} });
+    };
+
+    btn.addEventListener('click', () => {
+      if (article.classList.contains('is-open')) closeOffer(); else openOffer();
+    });
+    if (closeBtn) closeBtn.addEventListener('click', closeOffer);
+  });
+
+  // Esc closes any open disclosure (a11y / user-control heuristic)
+  document.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape') return;
+    const openOne = document.querySelector('.offer.is-open');
+    if (openOne) {
+      openOne.querySelector('.offer__expand-close')?.click();
+      openOne.querySelector('.offer__title-btn')?.focus();
+    }
+  });
+
+  /* --------------------------------------------------------------
      5. SMOOTH ANCHOR SCROLL
      -------------------------------------------------------------- */
   document.addEventListener('click', (e) => {
