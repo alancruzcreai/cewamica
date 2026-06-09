@@ -553,6 +553,51 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   padding-bottom: 1px;
 }
 
+/* Tagline — italic subtitle right below offer title */
+.offer__tagline {
+  margin: 6px 0 6px;
+  font-size: clamp(15px, 1.2vw, 17px);
+  line-height: 1.4;
+  color: var(--clay);
+  font-style: italic;
+  opacity: var(--o-85);
+}
+.offer__tagline em { font-style: italic; }
+
+/* WhatsApp threshold CTA at the bottom of each offer — a quiet, full-width
+   gesture that closes the card. */
+.offer__whatsapp {
+  display: inline-flex; align-items: baseline; gap: 10px;
+  margin-top: 22px;
+  font-size: 14px;
+  letter-spacing: 0.005em;
+  font-weight: 600;
+  color: var(--clay);
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 3px;
+  align-self: flex-start;
+  transition: opacity 0.4s var(--ease-soft);
+}
+.offer__whatsapp:hover { opacity: 0.65; }
+.offer__whatsapp-arrow {
+  font-weight: 400;
+  font-size: 12px;
+  position: relative; top: -1px;
+  transition: transform 0.4s var(--ease-soft);
+}
+.offer__whatsapp:hover .offer__whatsapp-arrow {
+  transform: translate(2px, -2px);
+}
+
+/* Aside footnote — "* No previous experience..." */
+.footnote {
+  margin-top: 2.2em !important;
+  font-size: 13px;
+  line-height: 1.7;
+  opacity: var(--o-45);
+  font-style: italic;
+}
+
 /* ABOUT inside Experiences */
 .about {
   margin-top: clamp(80px, 12vh, 140px);
