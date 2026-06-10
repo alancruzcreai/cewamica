@@ -18,6 +18,22 @@
   font-style: normal;
   font-display: swap;
 }
+/* Courier Prime — self-hosted woff2 (11KB each), no external round-trips.
+   Latin subset only; italics intentionally absent (site is italic-free). */
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('fonts/CourierPrime-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Courier Prime';
+  src: url('fonts/CourierPrime-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------- TOKENS ---------- */
 :root {

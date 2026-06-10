@@ -31,9 +31,24 @@
   const INTERVAL = isVideoMode ? 3500 : 6200;
   const pad = (n) => String(n + 1).padStart(2, '0');
 
+  // Upgrade ladder: hero slides 2-6 ship with preload="none" so the first
+  // paint costs ONLY poster 01 + video 01. Each later video is upgraded to
+  // full buffering one at a time, spaced out so they never compete with the
+  // stream the visitor is actually watching.
+  const warmed = new Set();
+  const warmUp = (idx) => {
+    if (!isVideoMode || warmed.has(idx)) return;
+    const v = slides[idx]?.querySelector('video.slide__video');
+    if (!v) return;
+    warmed.add(idx);
+    try {
+      v.preload = 'auto';
+      if (v.readyState === 0) v.load();
+    } catch (_) { /* noop */ }
+  };
+
   // Helper: kick the active video into playback from the start.
-  // Also pre-warm the NEXT slide's video so when its turn arrives it's already
-  // buffered — that's the trick to a pixel-clean cross-fade.
+  // Also pre-warm the NEXT slide so its cross-fade lands on buffered video.
   const playActiveVideo = () => {
     if (!isVideoMode) return;
     slides.forEach((s, i) => {
@@ -49,22 +64,30 @@
         try { v.pause(); } catch (_) { /* noop */ }
       }
     });
-    // Pre-warm next + next+1 so the upcoming cross-fades have fully-buffered video.
-    const ahead = [(active + 1) % slides.length, (active + 2) % slides.length];
-    ahead.forEach((idx) => {
-      const v = slides[idx]?.querySelector('video.slide__video');
-      if (v && v.readyState < 3) { try { v.load(); } catch (_) { /* noop */ } }
-    });
+    warmUp((active + 1) % slides.length);
+    warmUp((active + 2) % slides.length);
   };
 
-  // On first paint, force every video to start buffering. Modern browsers usually
-  // honour preload="auto" but kick them explicitly to be safe.
-  if (isVideoMode) {
-    slides.forEach((s) => {
-      const v = s.querySelector('video.slide__video');
-      if (!v) return;
-      try { v.load(); } catch (_) { /* noop */ }
-    });
+  // Staggered warm-up: once video 01 can play through (or after a fallback
+  // beat), bring in the rest one per second. Order: next-up first.
+  if (isVideoMode && slides.length > 1) {
+    const startLadder = () => {
+      let step = 0;
+      for (let k = 1; k < slides.length; k++) {
+        setTimeout(() => warmUp((active + k) % slides.length), step * 1000);
+        step++;
+      }
+    };
+    const v0 = slides[0]?.querySelector('video.slide__video');
+    let laddered = false;
+    const once = () => { if (!laddered) { laddered = true; startLadder(); } };
+    if (v0) {
+      v0.addEventListener('canplaythrough', once, { once: true });
+      // Fallback: don't wait forever on slow connections — begin after 2.5s
+      setTimeout(once, 2500);
+    } else {
+      once();
+    }
   }
 
   const goTo = (next) => {
@@ -248,8 +271,11 @@
       btn.setAttribute('aria-expanded', 'true');
       panel.setAttribute('aria-hidden', 'false');
 
-      // Lazy-load + autoplay every video inside this panel
+      // Lazy-load + autoplay every video inside this panel.
+      // Posters live in data-poster so the collapsed panel costs zero bytes;
+      // both poster and src attach only now, on first open.
       panel.querySelectorAll('video.offer__media-video').forEach((v) => {
+        if (!v.poster && v.dataset.poster) v.poster = v.dataset.poster;
         if (!v.src && v.dataset.src) {
           v.src = v.dataset.src;
           v.load();

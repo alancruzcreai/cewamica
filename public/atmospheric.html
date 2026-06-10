@@ -7,21 +7,12 @@
   <title>cewamica — atmospheric · wild clay, Baja California Sur</title>
   <meta name="description" content="Cewamica — wild clay gathered in Baja California Sur, shaped by hand, pit-fired. Guided one-on-one sessions with Salomé Le Lay in Todos Santos." />
 
-  <!-- Option 2 typography: Courier Prime (Google Fonts) — 400 + 700 + italics. -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&display=swap" />
-
-  <!-- Hero posters preload first so the cross-fade never lands on a blurry frame.
-       Videos themselves are preload="auto" (full buffer) and gated on canplay. -->
-  <link rel="preload" as="image" href="atmospheric/videos/01.jpg" />
-  <link rel="preload" as="image" href="atmospheric/videos/02.jpg" />
-  <link rel="preload" as="image" href="atmospheric/videos/03.jpg" />
-  <link rel="preload" as="image" href="atmospheric/videos/04.jpg" />
-  <link rel="preload" as="image" href="atmospheric/videos/05.jpg" />
-  <link rel="preload" as="image" href="atmospheric/videos/06.jpg" />
-  <link rel="preload" as="video" href="atmospheric/videos/01.mp4" type="video/mp4" />
-  <link rel="preload" as="video" href="atmospheric/videos/02.mp4" type="video/mp4" />
+  <!-- Critical window: ONLY what first paint needs.
+       Poster 01 paints the hero instantly; everything else streams in after.
+       Fonts are self-hosted woff2 (11KB each) — zero external round-trips. -->
+  <link rel="preload" as="image" href="atmospheric/videos/01.jpg" fetchpriority="high" />
+  <link rel="preload" as="font" href="fonts/CourierPrime-Regular.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="fonts/CourierPrime-Bold.woff2" type="font/woff2" crossorigin />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
@@ -80,7 +71,7 @@
       </article>
 
       <article class="slide" data-slide="1">
-        <video class="slide__video" preload="auto" muted playsinline loop
+        <video class="slide__video" preload="none" muted playsinline loop
                poster="atmospheric/videos/02.jpg">
           <source src="atmospheric/videos/02.mp4" type="video/mp4" />
         </video>
@@ -88,7 +79,7 @@
       </article>
 
       <article class="slide" data-slide="2">
-        <video class="slide__video" preload="auto" muted playsinline loop
+        <video class="slide__video" preload="none" muted playsinline loop
                poster="atmospheric/videos/03.jpg">
           <source src="atmospheric/videos/03.mp4" type="video/mp4" />
         </video>
@@ -96,7 +87,7 @@
       </article>
 
       <article class="slide" data-slide="3">
-        <video class="slide__video" preload="auto" muted playsinline loop
+        <video class="slide__video" preload="none" muted playsinline loop
                poster="atmospheric/videos/04.jpg">
           <source src="atmospheric/videos/04.mp4" type="video/mp4" />
         </video>
@@ -104,7 +95,7 @@
       </article>
 
       <article class="slide" data-slide="4">
-        <video class="slide__video" preload="auto" muted playsinline loop
+        <video class="slide__video" preload="none" muted playsinline loop
                poster="atmospheric/videos/05.jpg">
           <source src="atmospheric/videos/05.mp4" type="video/mp4" />
         </video>
@@ -112,7 +103,7 @@
       </article>
 
       <article class="slide" data-slide="5">
-        <video class="slide__video" preload="auto" muted playsinline loop
+        <video class="slide__video" preload="none" muted playsinline loop
                poster="atmospheric/videos/06.jpg">
           <source src="atmospheric/videos/06.mp4" type="video/mp4" />
         </video>
@@ -270,7 +261,7 @@
               <div class="offer__gallery" data-gallery-size="1">
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/one-on-one/01.jpg"
+                         data-poster="atmospheric/galleries/one-on-one/01.jpg"
                          data-src="atmospheric/galleries/one-on-one/01.mp4"></video>
                 </figure>
               </div>
@@ -335,27 +326,27 @@
               <div class="offer__gallery" data-gallery-size="5">
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/cycle/01.jpg"
+                         data-poster="atmospheric/galleries/cycle/01.jpg"
                          data-src="atmospheric/galleries/cycle/01.mp4"></video>
                 </figure>
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/cycle/02.jpg"
+                         data-poster="atmospheric/galleries/cycle/02.jpg"
                          data-src="atmospheric/galleries/cycle/02.mp4"></video>
                 </figure>
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/cycle/03.jpg"
+                         data-poster="atmospheric/galleries/cycle/03.jpg"
                          data-src="atmospheric/galleries/cycle/03.mp4"></video>
                 </figure>
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/cycle/04.jpg"
+                         data-poster="atmospheric/galleries/cycle/04.jpg"
                          data-src="atmospheric/galleries/cycle/04.mp4"></video>
                 </figure>
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/cycle/05.jpg"
+                         data-poster="atmospheric/galleries/cycle/05.jpg"
                          data-src="atmospheric/galleries/cycle/05.mp4"></video>
                 </figure>
               </div>
@@ -416,17 +407,17 @@
               <div class="offer__gallery" data-gallery-size="3">
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/group/01.jpg"
+                         data-poster="atmospheric/galleries/group/01.jpg"
                          data-src="atmospheric/galleries/group/01.mp4"></video>
                 </figure>
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/group/02.jpg"
+                         data-poster="atmospheric/galleries/group/02.jpg"
                          data-src="atmospheric/galleries/group/02.mp4"></video>
                 </figure>
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
-                         poster="atmospheric/galleries/group/03.jpg"
+                         data-poster="atmospheric/galleries/group/03.jpg"
                          data-src="atmospheric/galleries/group/03.mp4"></video>
                 </figure>
               </div>
