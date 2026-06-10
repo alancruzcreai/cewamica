@@ -1378,3 +1378,101 @@ em, .offer__tagline em, .display em, .display .line em, .frag em,
   color: #F5E8D9;
   opacity: 0.95;
 }
+
+/* ==========================================================================
+   EMAIL SIGNUP — the quiet path in #contact
+   Same family as the pill CTAs: underline input, outline pill that fills
+   clay with cream type on hover/focus/active.
+   ========================================================================== */
+.signup {
+  max-width: 480px;
+  margin: clamp(36px, 6vh, 56px) auto 0;
+  text-align: center;
+}
+.signup__lede {
+  font-size: 14px;
+  line-height: 1.8;
+  margin: 0 0 22px;
+}
+.signup__honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px; height: 1px;
+  opacity: 0;
+}
+.signup__label {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+.signup__row {
+  display: flex;
+  gap: 12px;
+  align-items: stretch;
+}
+.signup__input {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-family: var(--font);
+  font-size: 14px;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 22, 17, 0.30);
+  border-radius: 0;
+  padding: 12px 2px;
+  outline: none;
+  transition: border-color 0.3s var(--ease-soft);
+}
+.signup__input::placeholder { color: var(--ink); opacity: 0.32; }
+.signup__input:focus { border-bottom-color: var(--clay); }
+.signup__input:user-invalid { border-bottom-color: var(--orange); }
+.signup__btn {
+  flex-shrink: 0;
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--clay);
+  background: transparent;
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+  padding: 12px 22px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.35s var(--ease-soft), color 0.35s var(--ease-soft),
+              transform 0.25s var(--ease-soft), box-shadow 0.4s var(--ease-soft),
+              opacity 0.3s ease;
+}
+.signup__btn:hover,
+.signup__btn:focus-visible {
+  background: var(--clay);
+  color: var(--cream);
+  box-shadow: 0 8px 22px -10px rgba(110, 58, 34, 0.55);
+}
+.signup__btn:focus-visible {
+  outline: 2px solid rgba(110, 58, 34, 0.35);
+  outline-offset: 3px;
+}
+.signup__btn:active { transform: translateY(1px); }
+.signup__btn[disabled] { opacity: 0.55; cursor: default; }
+.signup__msg {
+  min-height: 1.4em;
+  margin: 14px 0 0;
+  font-size: 13px;
+  line-height: 1.7;
+  opacity: var(--o-65);
+}
+.signup__msg.is-success { color: var(--clay); opacity: 1; }
+.signup__msg.is-error { color: var(--orange); opacity: 1; }
+/* After success, the form quiets down */
+.signup__form.is-done .signup__row { opacity: 0.35; pointer-events: none; }
+
+@media (max-width: 640px) {
+  .signup__row { flex-direction: column; gap: 16px; }
+  .signup__btn { padding: 14px 22px; }
+}

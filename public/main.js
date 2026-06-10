@@ -323,4 +323,58 @@
     window.scrollTo({ top, behavior: reduceMotion ? 'auto' : 'smooth' });
   });
 
+  /* --------------------------------------------------------------
+     6. EMAIL SIGNUP — posts to FormSubmit, delivers to Salomé's inbox.
+        States: idle → sending → success (form quiets down) / error
+        (quiet message + mailto fallback). No page navigation.
+     -------------------------------------------------------------- */
+  const signupForm = $('#signupForm');
+  if (signupForm) {
+    const msg = $('#signupMsg');
+    const btn = signupForm.querySelector('.signup__btn');
+    const emailInput = $('#signupEmail');
+
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Native-style validation, done by hand because novalidate
+      const email = (emailInput.value || '').trim();
+      const valid = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+      if (!valid) {
+        msg.textContent = 'that email doesn’t look complete — mind checking it?';
+        msg.className = 'signup__msg is-error';
+        emailInput.focus();
+        return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'sending…';
+      msg.textContent = '';
+      msg.className = 'signup__msg';
+
+      try {
+        const res = await fetch(signupForm.action, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          body: JSON.stringify({
+            email,
+            _subject: 'cewamica — someone left their email',
+            _captcha: 'false'
+          })
+        });
+        if (!res.ok) throw new Error('bad status');
+        signupForm.classList.add('is-done');
+        msg.textContent = 'thank you — Salomé will write to you.';
+        msg.className = 'signup__msg is-success';
+        btn.textContent = 'sent';
+      } catch (_) {
+        btn.disabled = false;
+        btn.textContent = 'keep me posted';
+        msg.innerHTML = 'something didn’t go through — you can write directly to '
+          + '<a href="mailto:hola@cewamica.com" style="text-decoration:underline">hola@cewamica.com</a>';
+        msg.className = 'signup__msg is-error';
+      }
+    });
+  }
+
 })();

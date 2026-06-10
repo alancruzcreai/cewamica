@@ -575,6 +575,27 @@
         </a>
       </div>
 
+      <!-- Email capture — the quiet path: leave an address, Salomé writes back.
+           Posts to FormSubmit (delivers to hola@cewamica.com, no backend). -->
+      <div class="signup reveal reveal--delay-3">
+        <p class="signup__lede dim">
+          or leave your email — and hear from Salomé when something new takes shape.
+        </p>
+        <form class="signup__form" id="signupForm"
+              action="https://formsubmit.co/ajax/hola@cewamica.com" method="POST" novalidate>
+          <input type="text" name="_honey" class="signup__honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="_subject" value="cewamica — someone left their email" />
+          <input type="hidden" name="_captcha" value="false" />
+          <label class="signup__label" for="signupEmail">your email</label>
+          <div class="signup__row">
+            <input class="signup__input" id="signupEmail" type="email" name="email"
+                   placeholder="you@example.com" required autocomplete="email" inputmode="email" />
+            <button class="signup__btn" type="submit">keep me posted</button>
+          </div>
+          <p class="signup__msg" id="signupMsg" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+
       <div class="contact__sep" aria-hidden="true">—</div>
 
       <div class="contact__details">
