@@ -1035,29 +1035,67 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 .offer__title-btn:hover { opacity: 0.85; }
 .offer__title-btn .offer__title { margin: 0; }
 
-/* "Explore →" affordance — quiet until hover */
+/* "Explore →" pill button — real interactive surface with four states.
+   default → hover (fill) → active (pressed) → open (inverted + label swap) */
 .offer__explore {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  padding: 10px 22px;
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--clay);
-  opacity: 0.55;
+  background: transparent;
+  border: 1px solid rgba(110, 58, 34, 0.42);
+  border-radius: 999px;
   white-space: nowrap;
-  transition: opacity 0.4s var(--ease-soft), transform 0.5s var(--ease-soft);
   flex-shrink: 0;
+  cursor: pointer;
+  transition:
+    background 0.35s var(--ease-soft),
+    color 0.35s var(--ease-soft),
+    border-color 0.35s var(--ease-soft),
+    transform 0.25s var(--ease-soft),
+    box-shadow 0.4s var(--ease-soft);
+  user-select: none;
 }
-.offer__title-btn:hover .offer__explore { opacity: 1; }
+/* hover */
+.offer__title-btn:hover .offer__explore {
+  background: var(--clay);
+  color: var(--cream);
+  border-color: var(--clay);
+  box-shadow: 0 6px 18px -10px rgba(110, 58, 34, 0.55);
+}
+/* active / pressed */
+.offer__title-btn:active .offer__explore {
+  transform: translateY(1px);
+  box-shadow: 0 2px 8px -6px rgba(110, 58, 34, 0.5);
+}
+/* keyboard focus — same look as hover but with a clear outline ring */
+.offer__title-btn:focus-visible .offer__explore {
+  background: var(--clay);
+  color: var(--cream);
+  border-color: var(--clay);
+  outline: 2px solid rgba(110, 58, 34, 0.35);
+  outline-offset: 3px;
+}
+.offer__title-btn { outline: none; }   /* the pill carries the focus ring */
+/* open state: filled, swap "explore" label → "close" hint, rotate arrow */
+.offer.is-open .offer__explore {
+  background: var(--clay);
+  color: var(--cream);
+  border-color: var(--clay);
+}
 .offer__explore-arrow {
   display: inline-block;
-  transition: transform 0.5s var(--ease-soft);
+  transition: transform 0.4s var(--ease-soft);
 }
 .offer.is-open .offer__explore-arrow { transform: rotate(90deg); }
-.offer.is-open .offer__explore-label { opacity: 0; transform: translateX(8px); }
 .offer__explore-label {
-  transition: opacity 0.3s ease, transform 0.4s var(--ease-soft);
+  display: inline-block;
+  transition: opacity 0.25s ease;
 }
 
 /* Hide the bottom WhatsApp link when expanded — the same CTA repeats inside */
@@ -1223,3 +1261,84 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
     transition: none;
   }
 }
+
+/* ==========================================================================
+   GLOBAL — italics off everywhere
+   Hierarchy is carried by weight + opacity + size, never by font-style.
+   ========================================================================== */
+em, .offer__tagline em, .display em, .display .line em, .frag em,
+.offer__expand-headline em, .offer__quote, .offer__quote p,
+.collection__title em, .about__title em, .offer__title em,
+.contact__lede em, .signature, .offer__price em, .pair__num,
+.pair__items em, .format__name em, blockquote, blockquote p {
+  font-style: normal !important;
+}
+
+/* ==========================================================================
+   TESTIMONIAL ATTRIBUTION — small footer under each quote
+   ========================================================================== */
+.offer__quote {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.offer__quote-by {
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  opacity: var(--o-65);
+  margin: 0;
+  padding-top: 4px;
+}
+
+/* ==========================================================================
+   WhatsApp expand CTA — coherent states (idle / hover / active / focus)
+   Was unreadable on hover; fix contrast and add depth.
+   ========================================================================== */
+.offer__expand-cta {
+  background: transparent;
+  color: var(--clay);
+  border: 1px solid var(--clay);
+}
+.offer__expand-cta:hover,
+.offer__expand-cta:focus-visible {
+  background: var(--clay);
+  color: var(--cream);
+  border-color: var(--clay);
+  box-shadow: 0 8px 22px -10px rgba(110, 58, 34, 0.55);
+  opacity: 1;     /* override the global a:hover { opacity: 0.6 } */
+}
+.offer__expand-cta:focus-visible {
+  outline: 2px solid rgba(110, 58, 34, 0.35);
+  outline-offset: 3px;
+}
+.offer__expand-cta:active {
+  transform: translateY(1px);
+  box-shadow: 0 3px 10px -8px rgba(110, 58, 34, 0.5);
+}
+
+/* ==========================================================================
+   COLLECTIONS NOTE — center both the paragraph and the enquire link
+   ========================================================================== */
+.collection__note {
+  margin: clamp(60px, 10vh, 100px) auto 0;
+  max-width: var(--col-mid);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.collection__note-text {
+  margin: 0 auto;
+  font-size: 14px;
+  line-height: 1.85;
+  max-width: 56ch;
+}
+.collection__note .collection__enquire {
+  display: inline-block;
+  font-size: 13px;
+  border-bottom: 1px solid currentColor;
+  padding-bottom: 2px;
+  transition: opacity 0.3s ease;
+}
+.collection__note .collection__enquire:hover { opacity: 0.6; }
