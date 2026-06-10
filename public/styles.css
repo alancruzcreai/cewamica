@@ -1083,16 +1083,16 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   outline-offset: 3px;
 }
 .offer__title-btn { outline: none; }   /* the pill carries the focus ring */
-/* open state: filled, swap "explore" label → "close" hint, rotate arrow */
+/* open state: stays filled (persistent "on" indicator), label reads "close".
+   The label IS the state signal — it must be visible at every breakpoint. */
 .offer.is-open .offer__explore {
   background: var(--clay);
   color: var(--cream);
   border-color: var(--clay);
 }
-.offer.is-open .offer__explore-label { display: inline-block; }
 .offer__explore-label--open { display: none; }
 .offer.is-open .offer__explore-label--closed { display: none; }
-.offer.is-open .offer__explore-label--open { display: inline-block; }
+.offer.is-open .offer__explore-label--open { display: inline; }
 
 /* Hide the bottom WhatsApp link when expanded — the same CTA repeats inside */
 .offer.is-open > .offer__whatsapp { opacity: 0.35; }
@@ -1239,7 +1239,9 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 
 @media (max-width: 640px) {
   .offer__quotes { grid-template-columns: 1fr; }
-  .offer__title-btn .offer__explore-label { display: none; }
+  /* The label is the pill's only content (no arrow) — never hide it.
+     Compact the pill instead so it fits beside the title. */
+  .offer__explore { padding: 8px 16px; font-size: 10px; letter-spacing: 0.18em; }
   .offer__media { aspect-ratio: 9 / 13; }
 }
 
