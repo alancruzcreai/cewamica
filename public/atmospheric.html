@@ -88,24 +88,16 @@
 
       <article class="slide" data-slide="3">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/04.jpg">
-          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
-        </video>
-        <div class="slide__veil"></div>
-      </article>
-
-      <article class="slide" data-slide="4">
-        <video class="slide__video" preload="none" muted playsinline loop
                poster="atmospheric/videos/05.jpg">
           <source src="atmospheric/videos/05.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
-      <article class="slide" data-slide="5">
+      <article class="slide" data-slide="4">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/06.jpg">
-          <source src="atmospheric/videos/06.mp4" type="video/mp4" />
+               poster="atmospheric/videos/04.jpg">
+          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
@@ -120,26 +112,27 @@
         <p class="frag is-active" data-frag="0">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">feel</span>
         </p>
         <p class="frag" data-frag="1">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">listen</span>
         </p>
         <p class="frag" data-frag="2">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">explore</span>
         </p>
         <p class="frag" data-frag="3">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">wait</span>
         </p>
         <p class="frag" data-frag="4">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
-        </p>
-        <p class="frag" data-frag="5">
-          <span class="frag__line frag__line--lead">what takes shape</span>
-          <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">transform</span>
         </p>
       </div>
     </div>
@@ -152,18 +145,17 @@
 
     <!-- Bottom-right meta — index -->
     <div class="hero__meta hero__meta--br" aria-hidden="true">
-      <span class="dim">01 — 06</span>
+      <span class="dim">01 — 05</span>
       <span id="slideIndex">01</span>
     </div>
 
     <!-- Tiny progress dots, click to jump -->
     <div class="hero__dots" id="heroDots" role="tablist" aria-label="Hero">
-      <button class="dot is-active" data-go="0" role="tab" aria-label="1"></button>
-      <button class="dot" data-go="1" role="tab" aria-label="2"></button>
-      <button class="dot" data-go="2" role="tab" aria-label="3"></button>
-      <button class="dot" data-go="3" role="tab" aria-label="4"></button>
-      <button class="dot" data-go="4" role="tab" aria-label="5"></button>
-      <button class="dot" data-go="5" role="tab" aria-label="6"></button>
+      <button class="dot is-active" data-go="0" role="tab" aria-label="feel"></button>
+      <button class="dot" data-go="1" role="tab" aria-label="listen"></button>
+      <button class="dot" data-go="2" role="tab" aria-label="explore"></button>
+      <button class="dot" data-go="3" role="tab" aria-label="wait"></button>
+      <button class="dot" data-go="4" role="tab" aria-label="transform"></button>
     </div>
 
     <a class="scroll-cue" href="#experiences" aria-label="Scroll">
@@ -230,8 +222,7 @@
                     aria-expanded="false" aria-controls="expand-one-on-one">
               <h3 class="offer__title">1:1 <span class="medium">session</span></h3>
               <span class="offer__explore" aria-hidden="true">
-                <span class="offer__explore-label">explore</span>
-                <span class="offer__explore-arrow">→</span>
+                <span class="offer__explore-label offer__explore-label--closed">explore</span><span class="offer__explore-label offer__explore-label--open">close</span>
               </span>
             </button>
             <p class="offer__tagline"><em>A space to land.</em></p>
@@ -251,7 +242,6 @@
           </footer>
           <a class="offer__whatsapp" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20is%20it%20time%20to%20slow%20down%3F%20I%27d%20like%20to%20book%20a%201%3A1%20session." target="_blank" rel="noopener">
             <span>is it time to slow down?</span>
-            <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
           </a>
 
           <!-- IN-PLACE DISCLOSURE — opens with the explore button above -->
@@ -279,7 +269,6 @@
               </div>
               <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20is%20it%20time%20to%20slow%20down%3F%20I%27d%20like%20to%20book%20a%201%3A1%20session." target="_blank" rel="noopener">
                 <span>is it time to slow down?</span>
-                <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
               </a>
               <button class="offer__expand-close" type="button" aria-label="close">close ×</button>
             </div>
@@ -294,8 +283,7 @@
                     aria-expanded="false" aria-controls="expand-cycle">
               <h3 class="offer__title">the <span class="medium">cycle</span></h3>
               <span class="offer__explore" aria-hidden="true">
-                <span class="offer__explore-label">explore</span>
-                <span class="offer__explore-arrow">→</span>
+                <span class="offer__explore-label offer__explore-label--closed">explore</span><span class="offer__explore-label offer__explore-label--open">close</span>
               </span>
             </button>
             <p class="offer__tagline"><em>A deeper dialogue through clay.</em></p>
@@ -317,7 +305,6 @@
           </footer>
           <a class="offer__whatsapp" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20I%27m%20ready%20to%20get%20my%20hands%20dirty.%20Tell%20me%20about%20the%20Cycle." target="_blank" rel="noopener">
             <span>ready to get your hands dirty?</span>
-            <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
           </a>
 
           <section class="offer__expand" id="expand-cycle" aria-hidden="true">
@@ -364,7 +351,6 @@
               </div>
               <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20I%27m%20ready%20to%20get%20my%20hands%20dirty.%20Tell%20me%20about%20the%20Cycle." target="_blank" rel="noopener">
                 <span>ready to get your hands dirty?</span>
-                <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
               </a>
               <button class="offer__expand-close" type="button" aria-label="close">close ×</button>
             </div>
@@ -379,8 +365,7 @@
                     aria-expanded="false" aria-controls="expand-group">
               <h3 class="offer__title">small group <span class="medium">experiences</span></h3>
               <span class="offer__explore" aria-hidden="true">
-                <span class="offer__explore-label">explore</span>
-                <span class="offer__explore-arrow">→</span>
+                <span class="offer__explore-label offer__explore-label--closed">explore</span><span class="offer__explore-label offer__explore-label--open">close</span>
               </span>
             </button>
             <p class="offer__tagline"><em>A return to presence, together.</em></p>
@@ -398,7 +383,6 @@
           </footer>
           <a class="offer__whatsapp" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20who%20would%20I%20bring%3F%20Tell%20me%20about%20the%20group%20experience." target="_blank" rel="noopener">
             <span>who would you bring?</span>
-            <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
           </a>
 
           <section class="offer__expand" id="expand-group" aria-hidden="true">
@@ -434,7 +418,6 @@
               </div>
               <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20who%20would%20I%20bring%3F%20Tell%20me%20about%20the%20group%20experience." target="_blank" rel="noopener">
                 <span>who would you bring?</span>
-                <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
               </a>
               <button class="offer__expand-close" type="button" aria-label="close">close ×</button>
             </div>
@@ -564,7 +547,7 @@
           Some pieces presented here are available, and I also occasionally create
           commissioned pieces in conversation with the person or space they are meant for.
         </p>
-        <a href="mailto:hola@cewamica.com" class="collection__enquire">enquire about a piece ↗</a>
+        <a href="mailto:hola@cewamica.com" class="collection__enquire">enquire about a piece</a>
       </div>
 
     </div>
@@ -589,7 +572,6 @@
       <div class="contact__cta-wrap reveal reveal--delay-2">
         <a class="contact__cta" href="mailto:hola@cewamica.com">
           write to Salomé
-          <span class="arrow" aria-hidden="true">↗</span>
         </a>
       </div>
 

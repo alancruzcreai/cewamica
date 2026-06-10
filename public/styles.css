@@ -44,6 +44,7 @@
   --ink:       #1F1611;          /* near-black, warm-brown */
   --clay:      #3D2418;          /* deep clay accents */
   --orange:    #C24A2A;          /* whisper accent — used very sparingly */
+  --cream:     #F7ECDF;          /* light type on clay fills (hover/active) */
 
   /* Opacity-led hierarchy */
   --o-100: 1.0;
@@ -595,16 +596,7 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   transition: opacity 0.4s var(--ease-soft);
 }
 .offer__whatsapp:hover { opacity: 0.65; }
-.offer__whatsapp-arrow {
-  font-weight: 400;
-  font-size: 12px;
-  position: relative; top: -1px;
-  transition: transform 0.4s var(--ease-soft);
-}
-.offer__whatsapp:hover .offer__whatsapp-arrow {
-  transform: translate(2px, -2px);
-}
-
+.offer__whatsapp:hover 
 /* Aside footnote — "* No previous experience..." */
 .footnote {
   margin-top: 2.2em !important;
@@ -783,13 +775,6 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   transition: opacity 0.4s var(--ease-soft);
 }
 .contact__cta:hover { opacity: 0.6; }
-.contact__cta .arrow {
-  font-weight: 400;
-  font-size: 13px;
-  position: relative; top: -1px;
-  transition: transform 0.4s var(--ease-soft);
-}
-.contact__cta:hover .arrow { transform: translate(2px, -2px); }
 
 .contact__sep {
   margin: clamp(50px, 8vh, 80px) auto;
@@ -1104,15 +1089,10 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   color: var(--cream);
   border-color: var(--clay);
 }
-.offer__explore-arrow {
-  display: inline-block;
-  transition: transform 0.4s var(--ease-soft);
-}
-.offer.is-open .offer__explore-arrow { transform: rotate(90deg); }
-.offer__explore-label {
-  display: inline-block;
-  transition: opacity 0.25s ease;
-}
+.offer.is-open .offer__explore-label { display: inline-block; }
+.offer__explore-label--open { display: none; }
+.offer.is-open .offer__explore-label--closed { display: none; }
+.offer.is-open .offer__explore-label--open { display: inline-block; }
 
 /* Hide the bottom WhatsApp link when expanded — the same CTA repeats inside */
 .offer.is-open > .offer__whatsapp { opacity: 0.35; }
@@ -1237,15 +1217,7 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   color: var(--cream);
   transform: translateY(-1px);
 }
-.offer__expand-cta .offer__whatsapp-arrow {
-  font-weight: 400;
-  font-size: 12px;
-  transition: transform 0.4s var(--ease-soft);
-}
-.offer__expand-cta:hover .offer__whatsapp-arrow {
-  transform: translate(3px, -2px);
-}
-
+.offer__expand-cta .offer__expand-cta:hover 
 /* Subtle close button — top right of the expand */
 .offer__expand-close {
   position: absolute;
@@ -1358,3 +1330,49 @@ em, .offer__tagline em, .display em, .display .line em, .frag em,
   transition: opacity 0.3s ease;
 }
 .collection__note .collection__enquire:hover { opacity: 0.6; }
+
+
+/* ==========================================================================
+   FILLED-STATE LEGIBILITY — light type on clay, including descendants.
+   (--cream was undefined before this pass; defined in tokens now.)
+   ========================================================================== */
+.offer__title-btn:hover .offer__explore,
+.offer__title-btn:focus-visible .offer__explore,
+.offer.is-open .offer__explore,
+.offer__expand-cta:hover, .offer__expand-cta:hover *,
+.offer__expand-cta:active, .offer__expand-cta:active *,
+.offer__expand-cta:focus-visible, .offer__expand-cta:focus-visible *,
+.contact__cta:hover, .contact__cta:hover *,
+.contact__cta:active, .contact__cta:active * {
+  color: var(--cream);
+}
+/* contact CTA becomes a filled pill on hover too — same family as the rest */
+.contact__cta {
+  border: 1px solid var(--clay);
+  border-radius: 999px;
+  padding: 14px 28px;
+  transition: background 0.35s var(--ease-soft), color 0.35s var(--ease-soft),
+              transform 0.25s var(--ease-soft), box-shadow 0.4s var(--ease-soft);
+}
+.contact__cta:hover, .contact__cta:focus-visible {
+  background: var(--clay);
+  opacity: 1;
+  box-shadow: 0 8px 22px -10px rgba(110, 58, 34, 0.55);
+}
+.contact__cta:active { transform: translateY(1px); }
+
+/* ==========================================================================
+   HERO WORD — Salomé's one-word arc under "when you slow down"
+   feel → listen → explore → wait → transform
+   ========================================================================== */
+.frag__word {
+  display: block;
+  margin-top: 1.7em;
+  font-size: clamp(13px, 1.5vw, 17px);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.55em;
+  padding-left: 0.55em;   /* optical centring against tracking */
+  color: #F5E8D9;
+  opacity: 0.95;
+}
