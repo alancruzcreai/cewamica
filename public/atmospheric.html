@@ -62,6 +62,8 @@
 
     <div class="hero__slides" id="heroSlides">
 
+      <!-- Salomé's landing order: Transform · Expand · Listen · Explore · Feel.
+           Video NN maps 1:1 to slide index (01=transform … 05=feel). -->
       <article class="slide is-active" data-slide="0">
         <video class="slide__video" preload="auto" muted playsinline autoplay loop
                poster="atmospheric/videos/01.jpg">
@@ -88,16 +90,16 @@
 
       <article class="slide" data-slide="3">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/05.jpg">
-          <source src="atmospheric/videos/05.mp4" type="video/mp4" />
+               poster="atmospheric/videos/04.jpg">
+          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="4">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/04.jpg">
-          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
+               poster="atmospheric/videos/05.jpg">
+          <source src="atmospheric/videos/05.mp4" type="video/mp4" />
         </video>
         <div class="slide__veil"></div>
       </article>
@@ -112,27 +114,27 @@
         <p class="frag is-active" data-frag="0">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
-          <span class="frag__word">feel</span>
+          <span class="frag__word">transform</span>
         </p>
         <p class="frag" data-frag="1">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
-          <span class="frag__word">listen</span>
+          <span class="frag__word">expand</span>
         </p>
         <p class="frag" data-frag="2">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
-          <span class="frag__word">explore</span>
+          <span class="frag__word">listen</span>
         </p>
         <p class="frag" data-frag="3">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
-          <span class="frag__word">wait</span>
+          <span class="frag__word">explore</span>
         </p>
         <p class="frag" data-frag="4">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
-          <span class="frag__word">transform</span>
+          <span class="frag__word">feel</span>
         </p>
       </div>
     </div>
@@ -151,11 +153,11 @@
 
     <!-- Tiny progress dots, click to jump -->
     <div class="hero__dots" id="heroDots" role="tablist" aria-label="Hero">
-      <button class="dot is-active" data-go="0" role="tab" aria-label="feel"></button>
-      <button class="dot" data-go="1" role="tab" aria-label="listen"></button>
-      <button class="dot" data-go="2" role="tab" aria-label="explore"></button>
-      <button class="dot" data-go="3" role="tab" aria-label="wait"></button>
-      <button class="dot" data-go="4" role="tab" aria-label="transform"></button>
+      <button class="dot is-active" data-go="0" role="tab" aria-label="transform"></button>
+      <button class="dot" data-go="1" role="tab" aria-label="expand"></button>
+      <button class="dot" data-go="2" role="tab" aria-label="listen"></button>
+      <button class="dot" data-go="3" role="tab" aria-label="explore"></button>
+      <button class="dot" data-go="4" role="tab" aria-label="feel"></button>
     </div>
 
     <a class="scroll-cue" href="#experiences" aria-label="Scroll">
@@ -248,23 +250,33 @@
           <section class="offer__expand" id="expand-one-on-one" aria-hidden="true">
             <div class="offer__expand-inner">
               <p class="offer__expand-headline"><em>A space to land.</em></p>
-              <div class="offer__gallery" data-gallery-size="1">
+              <div class="offer__gallery" data-gallery-size="3">
                 <figure class="offer__media">
                   <video class="offer__media-video" preload="none" muted playsinline loop
                          data-poster="atmospheric/galleries/one-on-one/01.jpg"
                          data-src="atmospheric/galleries/one-on-one/01.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/one-on-one/02.jpg"
+                         data-src="atmospheric/galleries/one-on-one/02.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/one-on-one/03.jpg"
+                         data-src="atmospheric/galleries/one-on-one/03.mp4"></video>
                 </figure>
               </div>
               <div class="offer__quotes">
                 <blockquote class="offer__quote">
                   <p>“It's so easy for me to get caught up in everything. I hadn't realized
                   how much I needed this. I left calmer, more present and more like myself.”</p>
-                  <footer class="offer__quote-by">— Camille, 34 · France</footer>
+                  <footer class="offer__quote-by">— Caroline, France</footer>
                 </blockquote>
                 <blockquote class="offer__quote">
-                  <p>“I don't often make time for myself like this. It felt good to slow
-                  down and simply be.”</p>
-                  <footer class="offer__quote-by">— Andrés, 41 · México</footer>
+                  <p>“I don't often make time for myself like this. It felt so good to explore
+                  with clay in hands and simply be.”</p>
+                  <footer class="offer__quote-by">— Andrea, Uruguay</footer>
                 </blockquote>
               </div>
               <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20is%20it%20time%20to%20slow%20down%3F%20I%27d%20like%20to%20book%20a%201%3A1%20session." target="_blank" rel="noopener">
@@ -341,12 +353,12 @@
                 <blockquote class="offer__quote">
                   <p>“I came because I wanted to learn about wild clay. I didn't expect
                   the process to teach me so much about myself…”</p>
-                  <footer class="offer__quote-by">— Lucía, 29 · Argentina</footer>
+                  <footer class="offer__quote-by">— Lucia, Argentina</footer>
                 </blockquote>
                 <blockquote class="offer__quote">
-                  <p>“I've never been so involved in the making of a piece. It changed
+                  <p>“Learning to transform clay from the ground completely changed
                   the way I think about ceramics.”</p>
-                  <footer class="offer__quote-by">— Jonas, 47 · Germany</footer>
+                  <footer class="offer__quote-by">— Ismael, Mexico</footer>
                 </blockquote>
               </div>
               <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20I%27m%20ready%20to%20get%20my%20hands%20dirty.%20Tell%20me%20about%20the%20Cycle." target="_blank" rel="noopener">
@@ -409,11 +421,11 @@
                 <blockquote class="offer__quote">
                   <p>“We came expecting to spend an afternoon working with clay.
                   We left with a memory we will carry for a long time.”</p>
-                  <footer class="offer__quote-by">— Marta &amp; Felipe, 38 · Spain</footer>
+                  <footer class="offer__quote-by">— Marta &amp; Felipe, Spain</footer>
                 </blockquote>
                 <blockquote class="offer__quote">
                   <p>“It's hard to explain what happened that day. I'm still grateful for it.”</p>
-                  <footer class="offer__quote-by">— Hannah, 31 · United States</footer>
+                  <footer class="offer__quote-by">— Hannah, United States</footer>
                 </blockquote>
               </div>
               <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20who%20would%20I%20bring%3F%20Tell%20me%20about%20the%20group%20experience." target="_blank" rel="noopener">
@@ -433,7 +445,7 @@
         <div class="about__grid">
 
           <figure class="about__media reveal">
-            <img src="images/about/salome-new.jpg" alt="Salomé Le Lay" loading="lazy" />
+            <img src="images/about/salome.jpg" alt="Salomé Le Lay" loading="lazy" />
             <figcaption class="dim">Salomé Le Lay</figcaption>
           </figure>
 
@@ -463,6 +475,10 @@
                 in three dimensions, without needing to fully control them.
               </p>
               <p class="signature">— Salomé</p>
+              <p class="about__substack">
+                <a href="https://salomlelay.substack.com/?utm_source=cewamica&utm_medium=web&utm_content=about"
+                   target="_blank" rel="noopener">read more of my thinking on Substack ↗</a>
+              </p>
             </div>
           </div>
 
@@ -614,7 +630,8 @@
           <span class="contact__label dim">follow</span>
           <p>
             <a href="https://instagram.com/cewamica" target="_blank" rel="noopener">@cewamica</a><br>
-            <a href="https://instagram.com/salome.lelay" target="_blank" rel="noopener">@salome.lelay</a>
+            <a href="https://instagram.com/salome.lelay" target="_blank" rel="noopener">@salome.lelay</a><br>
+            <a href="https://salomlelay.substack.com/?utm_source=cewamica&utm_medium=web&utm_content=footer" target="_blank" rel="noopener">Substack</a>
           </p>
         </div>
         <div class="contact__col reveal reveal--delay-3">

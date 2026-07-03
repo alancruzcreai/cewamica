@@ -283,6 +283,19 @@
         const p = v.play();
         if (p && typeof p.catch === 'function') p.catch(() => {/* ignore autoplay rejection */});
       });
+
+      // Bring the revealed content (gallery + testimonials) into view.
+      // The client noted clicking Explore "seems like nothing happens" — the
+      // panel unfolds below the fold. After the expand transition settles,
+      // scroll the panel into view. scrollIntoView picks the right scroller
+      // automatically; scroll-margin-top (CSS) clears the fixed nav.
+      window.setTimeout(() => {
+        try {
+          panel.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        } catch (_) {
+          panel.scrollIntoView();
+        }
+      }, reduceMotion ? 0 : 480);
     };
 
     const closeOffer = () => {

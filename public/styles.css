@@ -1099,6 +1099,7 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 
 /* The disclosure panel — always in DOM, grid-row 0→1 animates height */
 .offer__expand {
+  scroll-margin-top: 90px;   /* clear the fixed nav when scrolled into view */
   display: grid;
   grid-template-rows: 0fr;
   opacity: 0;
@@ -1153,7 +1154,8 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   scroll-snap-stop: always;
 }
 .offer__gallery > .offer__media {
-  flex: 0 0 clamp(260px, 38vw, 380px);
+  /* Landscape 16:9 source — wider cards, cinematic, ~1.4 visible at once */
+  flex: 0 0 clamp(300px, 60vw, 560px);
 }
 .offer__gallery::-webkit-scrollbar { height: 4px; }
 .offer__gallery::-webkit-scrollbar-thumb {
@@ -1162,7 +1164,7 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 }
 .offer__media {
   margin: 0;
-  aspect-ratio: 2 / 3;
+  aspect-ratio: 16 / 9;
   scroll-snap-align: start;
   background: var(--bg-deep);
   border-radius: 4px;
@@ -1171,12 +1173,6 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 .offer__media-video {
   width: 100%; height: 100%; object-fit: cover;
   display: block;
-}
-
-/* For single-video gallery (1:1), centre the media at a comfortable size */
-.offer__gallery[data-gallery-size="1"] {
-  grid-auto-columns: minmax(280px, 480px);
-  justify-content: center;
 }
 
 /* Quotes — two side by side on desktop, stacked on mobile */
@@ -1476,3 +1472,18 @@ em, .offer__tagline em, .display em, .display .line em, .frag em,
   .signup__row { flex-direction: column; gap: 16px; }
   .signup__btn { padding: 14px 22px; }
 }
+
+/* ==========================================================================
+   ABOUT — Substack link under the signature
+   ========================================================================== */
+.about__substack {
+  margin: 18px 0 0;
+  font-size: 13px;
+}
+.about__substack a {
+  border-bottom: 1px solid rgba(61, 36, 24, 0.35);
+  padding-bottom: 2px;
+  color: var(--clay);
+  transition: border-color 0.3s var(--ease-soft), opacity 0.3s var(--ease-soft);
+}
+.about__substack a:hover { opacity: 1; border-bottom-color: var(--clay); }
