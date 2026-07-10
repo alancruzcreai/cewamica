@@ -275,6 +275,16 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   will-change: transform, opacity;
   /* No double ken-burns — the videos already carry motion */
 }
+/* On mobile, a 16:9 landscape video with cover zooms hard (~3-4x on a
+   portrait phone, ~1.2-1.3x even held sideways / iPad landscape).
+   Show the whole frame instead, letterboxed on the hero's dark ground —
+   original proportions, zero crop. Two triggers so ALL mobile cases hit:
+   - pointer: coarse  → touch devices, both orientations
+   - orientation: portrait → any narrow/upright viewport as safety net
+   Desktop (fine pointer, landscape) keeps the full-bleed cover. */
+@media (pointer: coarse), (orientation: portrait) {
+  .hero[data-mode="video"] .slide__video { object-fit: contain; }
+}
 /* Slightly faster cross-fade in video mode so transitions feel breath-like */
 .hero[data-mode="video"] .slide {
   transition: opacity 1.2s var(--ease-soft), visibility 0s linear 1.2s;
@@ -1238,7 +1248,11 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   /* The label is the pill's only content (no arrow) — never hide it.
      Compact the pill instead so it fits beside the title. */
   .offer__explore { padding: 8px 16px; font-size: 10px; letter-spacing: 0.18em; }
-  .offer__media { aspect-ratio: 9 / 13; }
+  /* Videos are 1920x1080 landscape — the container keeps the base 16/9
+     ratio so the full frame shows with zero crop. (A leftover 9/13
+     portrait override here was the cause of the mobile zoom bug.)
+     Widen the card so the landscape frame reads well on a phone. */
+  .offer__gallery > .offer__media { flex: 0 0 min(82vw, 420px); }
 }
 
 @media (prefers-reduced-motion: reduce) {
