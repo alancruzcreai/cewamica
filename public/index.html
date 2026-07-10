@@ -4,18 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="theme-color" content="#F4E6D7" />
-  <title>cewamica — wild clay, pit-fired, guided sessions in Todos Santos</title>
+  <title>cewámica — wild clay · Todos Santos, Baja California Sur</title>
   <meta name="description" content="Cewamica — wild clay gathered in Baja California Sur, shaped by hand, pit-fired. Guided one-on-one sessions with Salomé Le Lay in Todos Santos." />
 
-  <link rel="preload" as="font" href="fonts/Typewriter-Regular.otf" type="font/otf" crossorigin />
-  <link rel="preload" as="font" href="fonts/Typewriter-Medium.otf" type="font/otf" crossorigin />
-
-  <link rel="preload" as="image" href="images/hero/01-wild-clay.jpg" />
-  <link rel="preload" as="image" href="images/hero/02-pit-fired.jpg" />
+  <!-- Critical window: ONLY what first paint needs.
+       Poster 01 paints the hero instantly; everything else streams in after.
+       Fonts are self-hosted woff2 (11KB each) — zero external round-trips. -->
+  <link rel="preload" as="image" href="atmospheric/videos/01.jpg" fetchpriority="high" />
+  <link rel="preload" as="font" href="fonts/CourierPrime-Regular.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="fonts/CourierPrime-Bold.woff2" type="font/woff2" crossorigin />
 
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body data-option="1">
+<body data-option="2">
 
   <!-- Scroll progress -->
   <div class="scroll-progress" aria-hidden="true"><span id="scrollProgressBar"></span></div>
@@ -55,79 +56,85 @@
   </div>
 
   <!-- =============================================================
-       HERO — immersive, atmospheric fragments rotating with images
+       HERO — atmospheric video version (option 2)
        ============================================================= -->
-  <header class="hero" id="top" aria-label="Cewamica">
+  <header class="hero" id="top" aria-label="Cewamica" data-mode="video">
 
     <div class="hero__slides" id="heroSlides">
 
+      <!-- Salomé's landing order: Transform · Expand · Listen · Explore · Feel.
+           Video NN maps 1:1 to slide index (01=transform … 05=feel). -->
       <article class="slide is-active" data-slide="0">
-        <div class="slide__image" style="background-image:url('images/hero/01-wild-clay.jpg');"></div>
+        <video class="slide__video" preload="auto" muted playsinline autoplay loop
+               poster="atmospheric/videos/01.jpg">
+          <source src="atmospheric/videos/01.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="1">
-        <div class="slide__image" style="background-image:url('images/hero/04-intuitive.jpg');"></div>
+        <video class="slide__video" preload="none" muted playsinline loop
+               poster="atmospheric/videos/02.jpg">
+          <source src="atmospheric/videos/02.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="2">
-        <div class="slide__image" style="background-image:url('images/hero/03-pieces.jpg');"></div>
+        <video class="slide__video" preload="none" muted playsinline loop
+               poster="atmospheric/videos/03.jpg">
+          <source src="atmospheric/videos/03.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="3">
-        <div class="slide__image" style="background-image:url('images/hero/02-pit-fired.jpg');"></div>
+        <video class="slide__video" preload="none" muted playsinline loop
+               poster="atmospheric/videos/04.jpg">
+          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="4">
-        <div class="slide__image" style="background-image:url('images/barro/barro-12.jpg');"></div>
-        <div class="slide__veil"></div>
-      </article>
-
-      <article class="slide" data-slide="5">
-        <div class="slide__image" style="background-image:url('images/about/salome.jpg');"></div>
-        <div class="slide__veil"></div>
-      </article>
-
-      <article class="slide" data-slide="6">
-        <div class="slide__image" style="background-image:url('images/quiet/quiet-13.jpg');"></div>
+        <video class="slide__video" preload="none" muted playsinline loop
+               poster="atmospheric/videos/05.jpg">
+          <source src="atmospheric/videos/05.mp4" type="video/mp4" />
+        </video>
         <div class="slide__veil"></div>
       </article>
 
     </div>
 
-    <!-- Centered typewriter fragment, swaps with each slide -->
+    <!-- Centered fragment — Salomé's single line, repeated under every video.
+         (Same text per slide is intentional. The line breathes against six
+         different Baja landscapes — the meaning settles deeper with each return.) -->
     <div class="hero__fragment" aria-live="polite">
       <div class="frag-stack" id="fragStack">
         <p class="frag is-active" data-frag="0">
-          <span class="frag__line frag__line--lead">wild earth</span>
-          <span class="frag__line frag__line--sub">from Baja Sur</span>
+          <span class="frag__line frag__line--lead">what takes shape</span>
+          <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">transform</span>
         </p>
         <p class="frag" data-frag="1">
-          <span class="frag__line frag__line--lead">returning</span>
-          <span class="frag__line frag__line--sub">to the hands</span>
+          <span class="frag__line frag__line--lead">what takes shape</span>
+          <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">expand</span>
         </p>
         <p class="frag" data-frag="2">
           <span class="frag__line frag__line--lead">what takes shape</span>
           <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">listen</span>
         </p>
         <p class="frag" data-frag="3">
-          <span class="frag__line frag__line--lead">matter</span>
-          <span class="frag__line frag__line--sub">in movement</span>
+          <span class="frag__line frag__line--lead">what takes shape</span>
+          <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">explore</span>
         </p>
         <p class="frag" data-frag="4">
-          <span class="frag__line frag__line--lead">clay as matter</span>
-          <span class="frag__line frag__line--sub">and mirror</span>
-        </p>
-        <p class="frag" data-frag="5">
-          <span class="frag__line frag__line--lead">guided,</span>
-          <span class="frag__line frag__line--sub">one at a time</span>
-        </p>
-        <p class="frag" data-frag="6">
-          <span class="frag__line frag__line--lead">each one holds</span>
-          <span class="frag__line frag__line--sub">a different ground</span>
+          <span class="frag__line frag__line--lead">what takes shape</span>
+          <span class="frag__line frag__line--sub">when you slow down</span>
+          <span class="frag__word">feel</span>
         </p>
       </div>
     </div>
@@ -140,19 +147,17 @@
 
     <!-- Bottom-right meta — index -->
     <div class="hero__meta hero__meta--br" aria-hidden="true">
-      <span class="dim">01 — 07</span>
+      <span class="dim">01 — 05</span>
       <span id="slideIndex">01</span>
     </div>
 
     <!-- Tiny progress dots, click to jump -->
     <div class="hero__dots" id="heroDots" role="tablist" aria-label="Hero">
-      <button class="dot is-active" data-go="0" role="tab" aria-label="1"></button>
-      <button class="dot" data-go="1" role="tab" aria-label="2"></button>
-      <button class="dot" data-go="2" role="tab" aria-label="3"></button>
-      <button class="dot" data-go="3" role="tab" aria-label="4"></button>
-      <button class="dot" data-go="4" role="tab" aria-label="5"></button>
-      <button class="dot" data-go="5" role="tab" aria-label="6"></button>
-      <button class="dot" data-go="6" role="tab" aria-label="7"></button>
+      <button class="dot is-active" data-go="0" role="tab" aria-label="transform"></button>
+      <button class="dot" data-go="1" role="tab" aria-label="expand"></button>
+      <button class="dot" data-go="2" role="tab" aria-label="listen"></button>
+      <button class="dot" data-go="3" role="tab" aria-label="explore"></button>
+      <button class="dot" data-go="4" role="tab" aria-label="feel"></button>
     </div>
 
     <a class="scroll-cue" href="#experiences" aria-label="Scroll">
@@ -203,30 +208,37 @@
         </p>
       </div>
 
+      <!-- Atmospheric strip between intro + offers — the practice, made visible -->
+      <figure class="experiences__atmosphere reveal">
+        <img src="images/ambient/process-02.jpg" alt="" loading="lazy" />
+      </figure>
+
       <!-- Three offerings -->
       <div class="offers">
 
         <!-- 1:1 SESSION ============================================ -->
-        <article class="offer reveal">
+        <article class="offer reveal" data-offer="one-on-one">
           <header class="offer__head">
             <span class="offer__index">01</span>
-            <h3 class="offer__title">1:1 <span class="medium">session</span></h3>
+            <button class="offer__title-btn" type="button"
+                    aria-expanded="false" aria-controls="expand-one-on-one">
+              <h3 class="offer__title">1:1 <span class="medium">session</span></h3>
+              <span class="offer__explore" aria-hidden="true">
+                <span class="offer__explore-label offer__explore-label--closed">explore</span><span class="offer__explore-label offer__explore-label--open">close</span>
+              </span>
+            </button>
             <p class="offer__tagline"><em>A space to land.</em></p>
             <span class="offer__meta">one session · 2 hours</span>
           </header>
           <div class="offer__body">
-            <p>
-              A guided one-on-one session in my studio in Todos Santos.
-            </p>
-            <p>
-              We work slowly with wild clay collected in Baja California Sur,
-              moving between touch, conversation, gesture, and form.
-            </p>
-            <p class="dim">
-              Some sessions stay playful and light.
+            <p>A guided one-on-one session in my studio in Todos Santos.</p>
+            <p>We work slowly with wild clay collected in the desert of Baja
+              California Sur, moving between touch, conversation, gesture, and form.</p>
+            <p><em>I follow what asks for attention, offering gentle observations
+              and thoughtful questions as the process unfolds.</em></p>
+            <p class="dim">Some sessions stay playful and light.
               Others open deeper reflection or moments of clarity.
-              Each one takes its own shape.
-            </p>
+              Each one takes its own shape.</p>
           </div>
           <footer class="offer__foot">
             <span class="offer__price">$150 <span class="dim">USD</span></span>
@@ -234,41 +246,72 @@
           </footer>
           <a class="offer__whatsapp" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20is%20it%20time%20to%20slow%20down%3F%20I%27d%20like%20to%20book%20a%201%3A1%20session." target="_blank" rel="noopener">
             <span>is it time to slow down?</span>
-            <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
           </a>
-          <!-- TESTIMONIALS — for the future 1:1 gallery page:
-            "It's so easy for me to get caught up in everything. I hadn't realized how
-             much I needed this. I left calmer, more present and more like myself."
-            "I don't often make time for myself like this. It felt good to slow down
-             and simply be."
-          -->
+
+          <!-- IN-PLACE DISCLOSURE — opens with the explore button above -->
+          <section class="offer__expand" id="expand-one-on-one" aria-hidden="true">
+            <div class="offer__expand-inner">
+              <p class="offer__expand-headline"><em>A space to land.</em></p>
+              <div class="offer__gallery" data-gallery-size="3">
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/one-on-one/01.jpg"
+                         data-src="atmospheric/galleries/one-on-one/01.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/one-on-one/02.jpg"
+                         data-src="atmospheric/galleries/one-on-one/02.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/one-on-one/03.jpg"
+                         data-src="atmospheric/galleries/one-on-one/03.mp4"></video>
+                </figure>
+              </div>
+              <div class="offer__quotes">
+                <blockquote class="offer__quote">
+                  <p>“It's so easy for me to get caught up in everything. I hadn't realized
+                  how much I needed this. I left calmer, more present and more like myself.”</p>
+                  <footer class="offer__quote-by">— Caroline, France</footer>
+                </blockquote>
+                <blockquote class="offer__quote">
+                  <p>“I don't often make time for myself like this. It felt so good to explore
+                  with clay in hands and simply be.”</p>
+                  <footer class="offer__quote-by">— Andrea, Uruguay</footer>
+                </blockquote>
+              </div>
+              <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20is%20it%20time%20to%20slow%20down%3F%20I%27d%20like%20to%20book%20a%201%3A1%20session." target="_blank" rel="noopener">
+                <span>is it time to slow down?</span>
+              </a>
+              <button class="offer__expand-close" type="button" aria-label="close">close ×</button>
+            </div>
+          </section>
         </article>
 
         <!-- THE CYCLE ============================================== -->
-        <article class="offer reveal reveal--delay-1">
+        <article class="offer reveal reveal--delay-1" data-offer="cycle">
           <header class="offer__head">
             <span class="offer__index">02</span>
-            <h3 class="offer__title">the <span class="medium">cycle</span></h3>
+            <button class="offer__title-btn" type="button"
+                    aria-expanded="false" aria-controls="expand-cycle">
+              <h3 class="offer__title">the <span class="medium">cycle</span></h3>
+              <span class="offer__explore" aria-hidden="true">
+                <span class="offer__explore-label offer__explore-label--closed">explore</span><span class="offer__explore-label offer__explore-label--open">close</span>
+              </span>
+            </button>
             <p class="offer__tagline"><em>A deeper dialogue through clay.</em></p>
             <span class="offer__meta">a longer process · 6 sessions · 18 hours</span>
           </header>
           <div class="offer__body">
-            <p>
-              A one-on-one process moving from collecting clay to finished form.
-            </p>
-            <p>
-              Across six sessions, we gather clay in nature, prepare it by hand,
-              shape pieces, and accompany them through fire.
-            </p>
-            <p class="dim">
-              The process follows the rhythm of the material itself —
+            <p>A one-on-one process moving from collecting clay to finished form.</p>
+            <p>Across six sessions, we gather clay in nature, prepare it by hand,
+              shape pieces, and accompany them through fire.</p>
+            <p class="dim">The process follows the rhythm of the material itself —
               collecting, resting, building, refining, firing.
-              Usually experienced across six weeks, though timing can be adapted.
-            </p>
-            <p class="dim">
-              Designed for people wanting to engage more deeply
-              with process, rhythm, and continuity.
-            </p>
+              Usually experienced across six weeks, though timing can be adapted.</p>
+            <p class="dim">Designed for people wanting to engage more deeply
+              with process, rhythm, and continuity.</p>
           </div>
           <footer class="offer__foot">
             <span class="offer__price">$900 <span class="dim">USD</span></span>
@@ -276,33 +319,77 @@
           </footer>
           <a class="offer__whatsapp" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20I%27m%20ready%20to%20get%20my%20hands%20dirty.%20Tell%20me%20about%20the%20Cycle." target="_blank" rel="noopener">
             <span>ready to get your hands dirty?</span>
-            <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
           </a>
-          <!-- TESTIMONIALS — for the future Cycle gallery page:
-            "I came because I wanted to learn about wild clay. I didn't expect the
-             process to teach me so much about myself…"
-            "I've never been so involved in the making of a piece. It changed the way
-             I think about ceramics."
-          -->
+
+          <section class="offer__expand" id="expand-cycle" aria-hidden="true">
+            <div class="offer__expand-inner">
+              <p class="offer__expand-headline"><em>A deeper dialogue through clay.</em></p>
+              <div class="offer__gallery" data-gallery-size="5">
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/cycle/01.jpg"
+                         data-src="atmospheric/galleries/cycle/01.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/cycle/02.jpg"
+                         data-src="atmospheric/galleries/cycle/02.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/cycle/03.jpg"
+                         data-src="atmospheric/galleries/cycle/03.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/cycle/04.jpg"
+                         data-src="atmospheric/galleries/cycle/04.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/cycle/05.jpg"
+                         data-src="atmospheric/galleries/cycle/05.mp4"></video>
+                </figure>
+              </div>
+              <div class="offer__quotes">
+                <blockquote class="offer__quote">
+                  <p>“I came because I wanted to learn about wild clay. I didn't expect
+                  the process to teach me so much about myself…”</p>
+                  <footer class="offer__quote-by">— Lucia, Argentina</footer>
+                </blockquote>
+                <blockquote class="offer__quote">
+                  <p>“Learning to transform clay from the ground completely changed
+                  the way I think about ceramics.”</p>
+                  <footer class="offer__quote-by">— Ismael, Mexico</footer>
+                </blockquote>
+              </div>
+              <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20I%27m%20ready%20to%20get%20my%20hands%20dirty.%20Tell%20me%20about%20the%20Cycle." target="_blank" rel="noopener">
+                <span>ready to get your hands dirty?</span>
+              </a>
+              <button class="offer__expand-close" type="button" aria-label="close">close ×</button>
+            </div>
+          </section>
         </article>
 
         <!-- SMALL GROUP =========================================== -->
-        <article class="offer reveal reveal--delay-2">
+        <article class="offer reveal reveal--delay-2" data-offer="group">
           <header class="offer__head">
             <span class="offer__index">03</span>
-            <h3 class="offer__title">small group <span class="medium">experiences</span></h3>
+            <button class="offer__title-btn" type="button"
+                    aria-expanded="false" aria-controls="expand-group">
+              <h3 class="offer__title">small group <span class="medium">experiences</span></h3>
+              <span class="offer__explore" aria-hidden="true">
+                <span class="offer__explore-label offer__explore-label--closed">explore</span><span class="offer__explore-label offer__explore-label--open">close</span>
+              </span>
+            </button>
             <p class="offer__tagline"><em>A return to presence, together.</em></p>
             <span class="offer__meta">2–3 people · ~3 hours</span>
           </header>
           <div class="offer__body">
-            <p>
-              Custom experiences for small groups, friends, couples, or family members.
-            </p>
-            <p class="dim">
-              These sessions are more collective and can be shaped around the
-              people participating — a shared creative moment, a slower afternoon
-              together, or a meaningful transition being marked through making.
-            </p>
+            <p>Custom experiences for small groups, friends, couples, or family members.</p>
+            <p class="dim">These sessions are more collective and can be shaped around the
+              people participating — a shared creative moment, a slower afternoon together,
+              or a meaningful transition being marked through making.</p>
           </div>
           <footer class="offer__foot">
             <span class="offer__price dim">by request</span>
@@ -310,13 +397,45 @@
           </footer>
           <a class="offer__whatsapp" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20who%20would%20I%20bring%3F%20Tell%20me%20about%20the%20group%20experience." target="_blank" rel="noopener">
             <span>who would you bring?</span>
-            <span class="offer__whatsapp-arrow" aria-hidden="true">↗</span>
           </a>
-          <!-- TESTIMONIALS — for the future group-experience gallery page:
-            "We came expecting to spend an afternoon working with clay. We left with a
-             memory we will carry for a long time."
-            "It's hard to explain what happened that day. I'm still grateful for it."
-          -->
+
+          <section class="offer__expand" id="expand-group" aria-hidden="true">
+            <div class="offer__expand-inner">
+              <p class="offer__expand-headline"><em>A return to presence, together.</em></p>
+              <div class="offer__gallery" data-gallery-size="3">
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/group/01.jpg"
+                         data-src="atmospheric/galleries/group/01.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/group/02.jpg"
+                         data-src="atmospheric/galleries/group/02.mp4"></video>
+                </figure>
+                <figure class="offer__media">
+                  <video class="offer__media-video" preload="none" muted playsinline loop
+                         data-poster="atmospheric/galleries/group/03.jpg"
+                         data-src="atmospheric/galleries/group/03.mp4"></video>
+                </figure>
+              </div>
+              <div class="offer__quotes">
+                <blockquote class="offer__quote">
+                  <p>“We came expecting to spend an afternoon working with clay.
+                  We left with a memory we will carry for a long time.”</p>
+                  <footer class="offer__quote-by">— Marta &amp; Felipe, Spain</footer>
+                </blockquote>
+                <blockquote class="offer__quote">
+                  <p>“It's hard to explain what happened that day. I'm still grateful for it.”</p>
+                  <footer class="offer__quote-by">— Hannah, United States</footer>
+                </blockquote>
+              </div>
+              <a class="offer__expand-cta" href="https://wa.me/5215578437645?text=Hi%20Salom%C3%A9%2C%20who%20would%20I%20bring%3F%20Tell%20me%20about%20the%20group%20experience." target="_blank" rel="noopener">
+                <span>who would you bring?</span>
+              </a>
+              <button class="offer__expand-close" type="button" aria-label="close">close ×</button>
+            </div>
+          </section>
         </article>
 
       </div>
@@ -340,24 +459,22 @@
             </h3>
             <div class="about__body reveal reveal--delay-1">
               <p>
-                In 2021, my life took a big U-turn and I began accompanying people
-                through moments of deep transition and transformation.
+                In 2021, my life took a big turning point.
               </p>
               <p class="dim">
-                At the same time, clay entered my life as an anchor.
+                I began accompanying people through moments of deep transition
+                and transformation.
               </p>
               <p class="dim">
-                What began as a personal relationship with the material slowly
-                evolved into a practice shaped by the environments I was living in —
-                collecting wild clay, working with raw materials, and creating
-                through what the land itself had to offer.
-              </p>
-              <p class="dim">
-                Clay also became a way to express what was moving internally
-                through form, gesture, and volume — allowing things to emerge
-                in three dimensions, without needing to fully control them.
+                <em>Over the years, I developed a focus on integration work
+                and continue to do so today.</em>
               </p>
               <p class="signature">— Salomé</p>
+              <p class="about__substack">
+                Read more from me on
+                <a href="https://salomlelay.substack.com/?utm_source=cewamica&utm_medium=web&utm_content=about"
+                   target="_blank" rel="noopener">Substack</a>.
+              </p>
             </div>
           </div>
 
@@ -400,7 +517,7 @@
         </header>
 
         <div class="collection__grid">
-          <figure class="piece"><img src="images/quiet/quiet-01.jpg" alt="" loading="lazy"><figcaption><span>i</span> oasis · 12 × 13</figcaption></figure>
+          <figure class="piece"><img src="images/quiet/companion-hero.jpg" alt="" loading="lazy"><figcaption><span>i</span> companion · lead piece</figcaption></figure>
           <figure class="piece"><img src="images/quiet/quiet-02.jpg" alt="" loading="lazy"><figcaption><span>ii</span> pescadero · 12 × 13</figcaption></figure>
           <figure class="piece"><img src="images/quiet/quiet-03.jpg" alt="" loading="lazy"><figcaption><span>iii</span> la torre · 13 × 14</figcaption></figure>
           <figure class="piece"><img src="images/quiet/quiet-05.jpg" alt="" loading="lazy"><figcaption><span>iv</span> sierra · 11 × 12</figcaption></figure>
@@ -437,11 +554,13 @@
         </div>
       </article>
 
-      <p class="collection__note reveal">
-        <span class="dim">Some pieces presented here are available, and I also occasionally create
-        commissioned pieces in conversation with the person or space they are meant for.</span>
-        <a href="mailto:hola@cewamica.com" class="collection__enquire">enquire about a piece ↗</a>
-      </p>
+      <div class="collection__note reveal">
+        <p class="collection__note-text dim">
+          Some pieces presented here are available, and I also occasionally create
+          commissioned pieces in conversation with the person or space they are meant for.
+        </p>
+        <a href="mailto:hola@cewamica.com" class="collection__enquire">enquire about a piece</a>
+      </div>
 
     </div>
   </section>
@@ -465,8 +584,28 @@
       <div class="contact__cta-wrap reveal reveal--delay-2">
         <a class="contact__cta" href="mailto:hola@cewamica.com">
           write to Salomé
-          <span class="arrow" aria-hidden="true">↗</span>
         </a>
+      </div>
+
+      <!-- Email capture — the quiet path: leave an address, Salomé writes back.
+           Posts to FormSubmit (delivers to hola@cewamica.com, no backend). -->
+      <div class="signup reveal reveal--delay-3">
+        <p class="signup__lede dim">
+          or leave your email — and hear from Salomé when something new takes shape.
+        </p>
+        <form class="signup__form" id="signupForm"
+              action="https://formsubmit.co/ajax/hola@cewamica.com" method="POST" novalidate>
+          <input type="text" name="_honey" class="signup__honey" tabindex="-1" autocomplete="off" aria-hidden="true" />
+          <input type="hidden" name="_subject" value="cewamica — someone left their email" />
+          <input type="hidden" name="_captcha" value="false" />
+          <label class="signup__label" for="signupEmail">your email</label>
+          <div class="signup__row">
+            <input class="signup__input" id="signupEmail" type="email" name="email"
+                   placeholder="you@example.com" required autocomplete="email" inputmode="email" />
+            <button class="signup__btn" type="submit">keep me posted</button>
+          </div>
+          <p class="signup__msg" id="signupMsg" role="status" aria-live="polite"></p>
+        </form>
       </div>
 
       <div class="contact__sep" aria-hidden="true">—</div>
@@ -487,7 +626,8 @@
           <span class="contact__label dim">follow</span>
           <p>
             <a href="https://instagram.com/cewamica" target="_blank" rel="noopener">@cewamica</a><br>
-            <a href="https://instagram.com/salome.lelay" target="_blank" rel="noopener">@salome.lelay</a>
+            <a href="https://instagram.com/salome.lelay" target="_blank" rel="noopener">@salome.lelay</a><br>
+            <a href="https://salomlelay.substack.com/?utm_source=cewamica&utm_medium=web&utm_content=footer" target="_blank" rel="noopener">Substack</a>
           </p>
         </div>
         <div class="contact__col reveal reveal--delay-3">
@@ -500,7 +640,7 @@
   </section>
 
   <!-- =============================================================
-       FOOTER — quiet typewritten signature + giant wordmark sign-off
+       FOOTER — quiet typewritten signature
        ============================================================= -->
   <footer class="foot">
     <div class="foot__inner">
@@ -511,10 +651,6 @@
       <div class="foot__row">
         <span class="dim">© 2026 cewamica</span>
         <span class="dim">Todos Santos · Baja California Sur</span>
-      </div>
-      <div class="foot__row foot__row--switch">
-        <span class="dim">currently viewing — option 1 · photographs</span>
-        <a class="dim" href="atmospheric.html">see option 2 · video atmosphere ↗</a>
       </div>
     </div>
 
