@@ -267,9 +267,10 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
 }
 
 /* Video variant — atmospheric option.
-   HOME/HERO keeps its original full-bleed look: 16:9 clips with cover
-   on desktop, whole-frame contain on mobile (the approved zoom fix).
-   Only the section galleries switched to native vertical clips. */
+   HOME/HERO is full-bleed widescreen on EVERY device (per client):
+   cover fills the viewport edge to edge — on portrait phones that means
+   a tall vertical slice of the 16:9 frame, immersive like the original.
+   Only the section galleries use the native vertical clips. */
 .slide__video {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
@@ -277,9 +278,6 @@ button { font: inherit; background: none; border: 0; padding: 0; cursor: pointer
   object-position: center;
   will-change: transform, opacity;
   /* No double ken-burns — the videos already carry motion */
-}
-@media (pointer: coarse), (orientation: portrait) {
-  .hero[data-mode="video"] .slide__video { object-fit: contain; }
 }
 /* Slightly faster cross-fade in video mode so transitions feel breath-like */
 .hero[data-mode="video"] .slide {

@@ -74,7 +74,7 @@
     const startLadder = () => {
       let step = 0;
       for (let k = 1; k < slides.length; k++) {
-        setTimeout(() => warmUp((active + k) % slides.length), step * 1000);
+        setTimeout(() => warmUp((active + k) % slides.length), step * 400);
         step++;
       }
     };
@@ -83,8 +83,8 @@
     const once = () => { if (!laddered) { laddered = true; startLadder(); } };
     if (v0) {
       v0.addEventListener('canplaythrough', once, { once: true });
-      // Fallback: don't wait forever on slow connections — begin after 2.5s
-      setTimeout(once, 2500);
+      // Fallback: don't wait forever on slow connections — begin after 1.5s
+      setTimeout(once, 1500);
     } else {
       once();
     }
@@ -238,6 +238,41 @@
       giant.classList.add('is-in');
     }
   }
+
+  /* --------------------------------------------------------------
+     4b2. GALLERY PREFETCH — as the visitor approaches Experiences,
+          attach every gallery poster (cheap, ~40-60KB each) and start
+          buffering the FIRST clip of each gallery. Opening a panel then
+          plays instantly instead of waiting on a fresh download.
+     -------------------------------------------------------------- */
+  let galleriesPrefetched = false;
+  const prefetchGalleries = () => {
+    if (galleriesPrefetched) return;
+    galleriesPrefetched = true;
+    document.querySelectorAll('.offer__expand').forEach((panel) => {
+      const vids = panel.querySelectorAll('video.offer__media-video');
+      vids.forEach((v, i) => {
+        if (!v.poster && v.dataset.poster) v.poster = v.dataset.poster;
+        if (i === 0 && !v.src && v.dataset.src) {
+          v.preload = 'auto';
+          v.src = v.dataset.src;
+          v.load();
+        }
+      });
+    });
+  };
+  const experiencesSection = document.getElementById('experiences');
+  if (experiencesSection && 'IntersectionObserver' in window) {
+    const prefetch = new IntersectionObserver((entries) => {
+      if (!entries.some(e => e.isIntersecting)) return;
+      prefetch.disconnect();
+      prefetchGalleries();
+    }, { rootMargin: '1200px 0px' });
+    prefetch.observe(experiencesSection);
+  }
+  // Fallback: whatever happens with the observer, warm the galleries a few
+  // seconds after load — posters are ~40-60KB each, trivial once hero is in.
+  setTimeout(prefetchGalleries, 3000);
 
   /* --------------------------------------------------------------
      4c. OFFER DISCLOSURE — click title to reveal media + quotes
