@@ -31,6 +31,30 @@
   const INTERVAL = isVideoMode ? 3500 : 6200;
   const pad = (n) => String(n + 1).padStart(2, '0');
 
+  // HERO DUAL SOURCE — Salomé's clips exist in two cuts: native vertical
+  // (1080x1920) and widescreen (1920x1080). Portrait viewports (phones,
+  // tablets upright) get the vertical cut so the video fills the screen
+  // the way it was shot; landscape viewports get the widescreen cut.
+  // Chosen once at boot from data attributes on each <video>.
+  if (isVideoMode) {
+    const wantPortrait = window.matchMedia('(orientation: portrait)').matches;
+    const key = wantPortrait ? 'Portrait' : 'Landscape';
+    slides.forEach((s, i) => {
+      const v = s.querySelector('video.slide__video');
+      if (!v || v.src) return;
+      const src = v.dataset['src' + key];
+      const poster = v.dataset['poster' + key];
+      if (poster) v.poster = poster;
+      if (src) {
+        v.src = src;
+        if (i === 0) {              // first slide buffers immediately
+          v.preload = 'auto';
+          try { v.load(); } catch (_) { /* noop */ }
+        }
+      }
+    });
+  }
+
   // Upgrade ladder: hero slides 2-6 ship with preload="none" so the first
   // paint costs ONLY poster 01 + video 01. Each later video is upgraded to
   // full buffering one at a time, spaced out so they never compete with the

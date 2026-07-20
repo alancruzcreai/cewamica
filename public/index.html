@@ -10,7 +10,8 @@
   <!-- Critical window: ONLY what first paint needs.
        Poster 01 paints the hero instantly; everything else streams in after.
        Fonts are self-hosted woff2 (11KB each) — zero external round-trips. -->
-  <link rel="preload" as="image" href="atmospheric/videos/01.jpg" fetchpriority="high" />
+  <link rel="preload" as="image" href="atmospheric/videos/01.jpg" fetchpriority="high" media="(orientation: landscape)" />
+  <link rel="preload" as="image" href="atmospheric/videos/vertical/01.jpg" fetchpriority="high" media="(orientation: portrait)" />
   <link rel="preload" as="font" href="fonts/CourierPrime-Regular.woff2" type="font/woff2" crossorigin />
   <link rel="preload" as="font" href="fonts/CourierPrime-Bold.woff2" type="font/woff2" crossorigin />
 
@@ -65,42 +66,47 @@
       <!-- Salomé's landing order: Transform · Expand · Listen · Explore · Feel.
            Video NN maps 1:1 to slide index (01=transform … 05=feel). -->
       <article class="slide is-active" data-slide="0">
-        <video class="slide__video" preload="auto" muted playsinline autoplay loop
-               poster="atmospheric/videos/01.jpg">
-          <source src="atmospheric/videos/01.mp4" type="video/mp4" />
-        </video>
+        <video class="slide__video" preload="none" muted playsinline loop
+               data-src-landscape="atmospheric/videos/01.mp4"
+               data-src-portrait="atmospheric/videos/vertical/01.mp4"
+               data-poster-landscape="atmospheric/videos/01.jpg"
+               data-poster-portrait="atmospheric/videos/vertical/01.jpg"></video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="1">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/02.jpg">
-          <source src="atmospheric/videos/02.mp4" type="video/mp4" />
-        </video>
+               data-src-landscape="atmospheric/videos/02.mp4"
+               data-src-portrait="atmospheric/videos/vertical/02.mp4"
+               data-poster-landscape="atmospheric/videos/02.jpg"
+               data-poster-portrait="atmospheric/videos/vertical/02.jpg"></video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="2">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/03.jpg">
-          <source src="atmospheric/videos/03.mp4" type="video/mp4" />
-        </video>
+               data-src-landscape="atmospheric/videos/03.mp4"
+               data-src-portrait="atmospheric/videos/vertical/03.mp4"
+               data-poster-landscape="atmospheric/videos/03.jpg"
+               data-poster-portrait="atmospheric/videos/vertical/03.jpg"></video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="3">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/04.jpg">
-          <source src="atmospheric/videos/04.mp4" type="video/mp4" />
-        </video>
+               data-src-landscape="atmospheric/videos/04.mp4"
+               data-src-portrait="atmospheric/videos/vertical/04.mp4"
+               data-poster-landscape="atmospheric/videos/04.jpg"
+               data-poster-portrait="atmospheric/videos/vertical/04.jpg"></video>
         <div class="slide__veil"></div>
       </article>
 
       <article class="slide" data-slide="4">
         <video class="slide__video" preload="none" muted playsinline loop
-               poster="atmospheric/videos/05.jpg">
-          <source src="atmospheric/videos/05.mp4" type="video/mp4" />
-        </video>
+               data-src-landscape="atmospheric/videos/05.mp4"
+               data-src-portrait="atmospheric/videos/vertical/05.mp4"
+               data-poster-landscape="atmospheric/videos/05.jpg"
+               data-poster-portrait="atmospheric/videos/vertical/05.jpg"></video>
         <div class="slide__veil"></div>
       </article>
 
